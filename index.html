@@ -28,7 +28,38 @@
     <button type="button" id="btn1" onClick="viewProduct()"> View Product </button>
     <button type="button" id="btn2" onClick="onSubscribe()"> Subscribe </button>
 
+
+    <div id="container">
+        <div class="close">&times;</div>
+        <img
+            src="https://img.freepik.com/free-photo/young-gowoman-yellow-leather-jacket-copy-space_23-2148674153.jpg?w=2000" />
+        <div class="message">
+            Hello <span id="user-name">user</span>,
+            <p>Still thinking about the <span id="product-name">item</span> in your cart?</p>
+            <p>We get it - it's fabulous.</p>
+            <p>Use SALE20 and avail 20% off</p>
+            <p>What are you waiting for??</p>
+        </div>
+    </div>
+
+
 </body>
+
+<script type="text/javascript">
+    function renderCartDropOffPersonalisationCampaign(data) {
+        const name = data.kv.Name;
+        const product = data.kv.Cart;
+        const containerEl = document.getElementById('container')
+        const userNameEl = containerEl.getElementById('user-name')
+        usernameEl.innerText = name
+        const productNameEl = containerEl.getElementById('product-name')
+        productNameEl.innerText = product
+    }
+    document.addEventListener("CT_web_native_display", function (event) {
+        console.log(event);
+        renderCartDropOffPersonalisationCampaign(event.detail);
+    });
+</script>
 
 <script type="text/javascript">
     if (ServiceWorker in navigator) {
