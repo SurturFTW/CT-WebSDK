@@ -50,14 +50,15 @@
         const name = data.kv.Name;
         const product = data.kv.Cart;
         const containerEl = document.getElementById('container')
-        const userNameEl = containerEl.getElementById('user-name')
+        const userNameEl = containerEl.querySelector('#user-name')
         usernameEl.innerText = name
-        const productNameEl = containerEl.getElementById('product-name')
+        const productNameEl = containerEl.querySelector('#product-name')
         productNameEl.innerText = product
     }
     document.addEventListener("CT_web_native_display", function (event) {
         console.log(event);
-        renderCartDropOffPersonalisationCampaign(event.detail);
+        const data = event.detail
+        renderCartDropOffPersonalisationCampaign(data);
     });
 </script>
 
