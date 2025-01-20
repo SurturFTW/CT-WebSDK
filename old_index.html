@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CleverTap Web SDK</title>
+
     <script type="text/javascript">
         var clevertap = { event: [], profile: [], account: [], onUserLogin: [], notifications: [], privacy: [] };
         // replace with the CLEVERTAP_ACCOUNT_ID with the actual ACCOUNT ID value from your Dashboard -> Settings page
@@ -19,31 +21,32 @@
             s.parentNode.insertBefore(wzrk, s);
         })();
     </script>
-
-    <title>Clevertap Web SDK</title>
 </head>
 
 <body>
-    <h3> This is CT Page. </h3>
-    <button type="button" id="btn1" onClick="viewProduct()"> View Product </button>
-    <button type="button" id="btn2" onClick="onSubscribe()"> Subscribe </button>
+    <form id="login-form">
+        <div class="container">
+            <label for="name"><b>Name</b></label>
+            <input type="text" placeholder="Enter Name" id="name" name="name" required> <br><br>
 
+            <label for="email"><b>Email</b></label>
+            <input type="email" placeholder="Enter Email" id="email" name="email" required> <br><br>
+
+            <label for="phn"><b>Phone Number</b></label>
+            <input type="text" placeholder="Enter Phone Number" id="phone" name="phone" required> <br><br>
+
+            <button type="button" id="btn1"> Login </button> <br><br>
+            <button type="button" id="btn2"> Update </button> <br><br>
+
+            <!-- <button type="button" id="btn2" onclick="onPopup()"> Pop-up </button> <br><br> -->
+
+            <button type="button" id="btn3" class="btn3"> Subscribe! </button>
+        </div>
+    </form>
+
+    <script src="./script.js" type="text/javascript">
+
+    </script>
 </body>
-
-<script type="text/javascript">
-    if (ServiceWorker in navigator) {
-        navigator.serviceWorker
-            .register("clevertap_sw.js")
-            .then(function (registration) {
-                console.log("Service Worker Registered");
-                console.log(registration);
-            })
-            .catch(function (error) {
-                console.log("Service Worker Registration Failed");
-                console.log(error);
-            });
-    }
-</script>
-<script src="./script.js" type="text/javascript"> </script>
 
 </html>

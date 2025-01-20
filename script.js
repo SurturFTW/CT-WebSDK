@@ -1,101 +1,50 @@
-// importScripts('https://s3-eu-west-1.amazonaws.com/static.wizrocket.com/js/sw_webpush.js');// remove CleverTap server worker from your root folder
+// with the exception of one of Identity, Email, or FBID
+// each of the following fields is optional
 
-document.getElementById("btn1").addEventListener("click", function (event) {
-    console.log("Button clicked.");
-    event.preventDefault();
+clevertap.onUserLogin.push({
+    "Site": {
+        "Name": "Jack Montana",            // String
+        "Identity": 61026032,              // String or number
+        "Email": "jack@gmail.com",         // Email address of the user
+        "Phone": "+14155551234",           // Phone (with the country code)
+        "Gender": "M",                     // Can be either M or F
+        "DOB": new Date(),                 // Date of Birth. Date object
+        // optional fields. controls whether the user will be sent email, push etc.
+        "MSG-email": false,                // Disable email notifications
+        "MSG-push": true,                  // Enable push notifications
+        "MSG-sms": true,                   // Enable sms notifications
+        "MSG-whatsapp": true,              // Enable WhatsApp notifications
+    }
+})
 
-    var name = document.getElementById("name").value;
-    var email = document.getElementById("email").value;
-    var phone = document.getElementById("phone").value;
-
-    clevertap.onUserLogin.push({
-        "Site": {
-            "Name": name,                      // String
-            "Identity": phone,
-            "Email": email,                    // Email address of the user
-            "Phone": `+91${phone}`,            // Phone (with the country code)
-
-            "MSG-email": false,                // Disable email notifications
-            "MSG-push": true,                  // Enable push notifications
-            "MSG-sms": true,                   // Enable sms notifications
-            "MSG-whatsapp": true,     
-        }
-    });
-
-    clevertap.profile.push({
-        "Site": {
-            "Prefered Language": "English"
-        }
-    });
-    alert("User Added and profile updated")
+clevertap.profile.push({
+    "Site": {
+        "Customer Type": "Silver",
+        "Prefered Language": "English"
+    }
 });
 
-
-
-
-/*
-function onLogin() {
+function viewProduct() {
     document.getElementById("btn1").addEventListener("click", function (event) {
-    alert("Login Button clicked.");
-    event.preventDefault();
-    console.log('----inside login----')
-    var name = document.getElementById('name').value;
-    var email = document.getElementById('email').value;
-    var phone = document.getElementById('phone').value;
-
-    console.log({ name, email, phone })
-  
-    clevertap.onUserLogin.push({
-        "Site": {
-            "Name": name,                     // use the Name variable
-            "Email": email,                   // Email address of the user
-            "Identity": phone,
-            "Phone": `+91${phone}`,           // Phone (with the country code
-            "DOB": new Date(),                 // Date of Birth. Date object 
-      
-            "MSG-email": false,                // Disable email notifications
-            "MSG-push": true,                  // Enable push notifications
-            "MSG-sms": true,                   // Enable sms notifications
-            "MSG-whatsapp": true,  
-        }});
-    }
+    alert("button clicked!");
+        clevertap.event.push("Product Viewed", {
+            "Product name":"Casio Chronograph Watch",
+            "Category":"Mens Accessories",
+            "Price":59.99,
+            "Date": new Date()
+        }); 
+    }    
 )}
 
-function onPush(){
-    document.getElementById("btn2").addEventListener("click", function (event) {
-    console.log("Button clicked.");
-    alert("On-Push Button clicked.");
-    event.preventDefault();
-
-    console.log('-----inside push-----')
-    var name = document.getElementById('name').value;
-    var email = document.getElementById('email').value;
-    var phone = document.getElementById('phone').value;
-
-    console.log({name, email, phone})
-    clevertap.profile.push({
-        "site":{
-            "Name": name,
-            "Email": email,
-            "Identity": phone,
-            "Phone": `+91${phone}`,
-            "DOB": new Date()
-        }
+function onSubscribe(){
+    document.getElementById("btn2").addEventListener("click", function(event){
+        alert("Clicked Subscribe");
+        clevertap.notifications.push({
+            "titleText":'Would you like to receive Push Notifications?',
+            "bodyText":'We promise to only send you relevant content and give you updates on your transactions',
+            "okButtonText":'Sign me up!',
+            "rejectButtonText":'No thanks',
+            "okButtonColor":'#f28046'
+        });
     })
-    });
 }
-
-function subscribe(){
-    document.getElementById("btn3").addEventListener("click", function (event) {
-    console.log("Button clicked.");
-    event.preventDefault();
-
-    console.log("clicked subscribe button!");
-    clevertap.notifications.push({
-        "titleText": 'Would you like to receive Push Notifications?',
-        "bodyText": 'We promise to only send you relevant content and give you updates on your transactions',
-        "okButtonText": 'Sign me up!',
-        "rejectButtonText": 'No thanks',
-        "okButtonColor": '#f28046'
-    });
-})} */
