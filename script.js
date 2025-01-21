@@ -76,3 +76,9 @@ function onPopup() {
     clevertap.event.push("Web Session Started");
   });
 }
+
+function onExit() {
+  document.getElementById("btn6").addEventListener("click", function (event) {
+    console.log("Exit button clicked");
+  });
+}
