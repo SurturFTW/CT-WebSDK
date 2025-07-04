@@ -1,42 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="text/javascript">
-        var clevertap = { event: [], profile: [], account: [], onUserLogin: [], notifications: [], privacy: [] };
-        // replace with the CLEVERTAP_ACCOUNT_ID with the actual ACCOUNT ID value from your Dashboard -> Settings page
-        clevertap.account.push({ "id": "TEST-865-ZRW-7K7Z" });
-        clevertap.privacy.push({ optOut: false }); //set the flag to true, if the user of the device opts out of sharing their data
-        clevertap.privacy.push({ useIP: true }); //set the flag to true, if the user agrees to share their IP data
-        (function () {
-            var wzrk = document.createElement('script');
-            wzrk.type = 'text/javascript';
-            wzrk.async = true;
-            wzrk.src = ('https:' == document.location.protocol ? 'https://d2r1yp2w7bby2u.cloudfront.net' : 'http://static.clevertap.com') + '/js/clevertap.min.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(wzrk, s);
-        })();
+      var clevertap = {
+        event: [],
+        profile: [],
+        account: [],
+        onUserLogin: [],
+        notifications: [],
+        privacy: [],
+      };
+      // replace with the CLEVERTAP_ACCOUNT_ID with the actual ACCOUNT ID value from your Dashboard -> Settings page
+      clevertap.account.push({ id: "TEST-865-ZRW-7K7Z" });
+      clevertap.privacy.push({ optOut: false }); //set the flag to true, if the user of the device opts out of sharing their data
+      clevertap.privacy.push({ useIP: true }); //set the flag to true, if the user agrees to share their IP data
+      (function () {
+        var wzrk = document.createElement("script");
+        wzrk.type = "text/javascript";
+        wzrk.async = true;
+        wzrk.src =
+          ("https:" == document.location.protocol
+            ? "https://d2r1yp2w7bby2u.cloudfront.net"
+            : "http://static.clevertap.com") + "/js/clevertap.min.js";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(wzrk, s);
+      })();
     </script>
 
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css"
+      rel="stylesheet"
+    />
 
     <title>Clevertap Web SDK</title>
-</head>
+  </head>
 
-<body>
-    <h3> This is CT Page. </h3>
-    <button type="button" id="login"
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        onClick="onLogin()"> Login </button>
-    <button type="button" id="btn1" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="viewProduct()"> View Product </button>
-    <button type="button" id="btn2" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="onSubscribe()"> Subscribe </button>
-    <button type="button" id="btn3" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="onnativeBanner()"> Native Display </button>
-    <button type="button" id="btn4" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="onWebPush()"> Web Push </button>
-    <button type="button" id="btn6" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick="onExit()"> Exit Intent </button>
-    <button type="button" id="btn5" class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onclick="onPopup()"> Web Popup </button>
-    
+  <body>
+    <h3>This is CT Page.</h3>
+    <button
+      type="button"
+      id="login"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      onClick="onLogin()"
+    >
+      Login
+    </button>
+    <button
+      type="button"
+      id="btn1"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      onClick="viewProduct()"
+    >
+      View Product
+    </button>
+    <button
+      type="button"
+      id="btn2"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      onClick="onSubscribe()"
+    >
+      Subscribe
+    </button>
+    <button
+      type="button"
+      id="btn3"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      onClick="onnativeBanner()"
+    >
+      Native Display
+    </button>
+    <button
+      type="button"
+      id="btn4"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      onClick="onWebPush()"
+    >
+      Web Push
+    </button>
+    <button
+      type="button"
+      id="btn6"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      onClick="onExit()"
+    >
+      Exit Intent
+    </button>
+    <button
+      type="button"
+      id="btn5"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      onclick="onPopup()"
+    >
+      Web Popup
+    </button>
+    <button
+      type="button"
+      id="ctid"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      onclick="getCTid()"
+    >
+      Get CT ID
+    </button>
+
+    <button
+      type="button"
+      id="clear"
+      class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      onclick="clearCache()"
+    >
+      Clear Cache
+    </button>
+
+    <input type="datetime-local" id="subscriptionExpiryDate" />
+
     <div id="nativeBanner"></div>
 
     <!-- <div id="container">
@@ -52,28 +130,25 @@
         </div>
     </div> -->
 
-
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-</body>
+  </body>
 
-<script type="text/javascript">
+  <script type="text/javascript">
     function renderCartDropOffPersonalisationCampaign(data) {
-        const name = data.kv.Name;
-        const product = data.kv.Cart;
-        const containerEl = document.getElementById('container')
-        const userNameEl = containerEl.querySelector('#user-name')
-        userNameEl.innerText = name
-        const productNameEl = containerEl.querySelector('#product-name')
-        productNameEl.innerText = product
+      const name = data.kv.Name;
+      const product = data.kv.Cart;
+      const containerEl = document.getElementById("container");
+      const userNameEl = containerEl.querySelector("#user-name");
+      userNameEl.innerText = name;
+      const productNameEl = containerEl.querySelector("#product-name");
+      productNameEl.innerText = product;
     }
     document.addEventListener("CT_web_native_display", function (event) {
-        console.log(event);
-        const data = event.detail
-        renderCartDropOffPersonalisationCampaign(data);
+      console.log(event);
+      const data = event.detail;
+      renderCartDropOffPersonalisationCampaign(data);
     });
-</script>
+  </script>
 
-
-<script src="./script.js" type="text/javascript"> </script>
-
+  <script src="./script.js" type="text/javascript"></script>
 </html>

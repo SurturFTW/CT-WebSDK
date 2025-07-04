@@ -16,14 +16,25 @@ if (ServiceWorker in navigator) {
 
 function onLogin() {
   document.getElementById("login").addEventListener("click", function (event) {
+    // Get date from frontend input
+    const subscriptionExpiryDateInput = document.getElementById(
+      "subscriptionExpiryDate"
+    );
+    const expiryDate = subscriptionExpiryDateInput
+      ? new Date(subscriptionExpiryDateInput.value)
+      : null;
+
     clevertap.onUserLogin.push({
       Site: {
-        Name: "Jack Montana", // String
-        Identity: 61026032, // String or number
-        Email: "jack@gmail.com", // Email address of the user
-        Phone: "+14155551234", // Phone (with the country code)
+        Name: "Push Test", // String
+        Identity: 22222, // String or number
+        Email: "pushtest@gmail.com", // Email address of the user
+        Phone: "+56765676567", // Phone (with the country code),
         Gender: "M", // Can be either M or F
         DOB: new Date(), // Date of Birth. Date object
+
+        SubscriptionExpiryDate: expiryDate,
+
         // optional fields. controls whether the user will be sent email, push etc.
         "MSG-email": false, // Disable email notifications
         "MSG-push": true, // Enable push notifications
@@ -32,6 +43,7 @@ function onLogin() {
       },
     });
     console.log("User logged in");
+    console.log("Test DateTime: ", subscriptionExpiryDateInput.value);
     // alert(clevertap.getClevertapID());
   });
 }
@@ -93,5 +105,18 @@ function onnativeBanner() {
   document.getElementById("btn3").addEventListener("click", function (event) {
     console.log("Native button clicked");
     clevertap.event.push("Native Event");
+  });
+}
+
+function getCTid() {
+  document.getElementById("ctid").addEventListener("click", function (event) {
+    console.log("Clevertap ID: " + clevertap.getCleverTapID());
+  });
+}
+
+function clearCache() {
+  document.getElementById("clear").addEventListener("click", function (event) {
+    console.log("Clearing cache");
+    localStorage.clear();
   });
 }
