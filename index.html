@@ -3,6 +3,49 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .carousel-container {
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Firefox */
+      }
+
+      .carousel-container::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera */
+      }
+
+      .carousel-item {
+        flex: 0 0 auto;
+        width: 280px;
+        scroll-snap-align: start;
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .carousel-item:hover {
+        transform: translateY(-5px);
+      }
+
+      .carousel-item img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .carousel-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 8px;
+        text-align: center;
+      }
+    </style>
     <script type="text/javascript">
       var clevertap = {
         event: [],
@@ -97,6 +140,14 @@
     </button>
     <button
       type="button"
+      id="btn7"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      onclick="newPopup()"
+    >
+      New Web Popup
+    </button>
+    <button
+      type="button"
       id="ctid"
       class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
       onclick="getCTid()"
@@ -117,6 +168,53 @@
 
     <div id="nativeBanner"></div>
 
+    <!-- Image Carousel for Native Display -->
+    <div class="max-w-4xl mx-auto my-8">
+      <h2 class="text-2xl font-bold mb-4 text-center">Top News</h2>
+      <div id="imageCarousel" class="relative w-full">
+        <div class="carousel-container flex overflow-x-auto gap-4 p-4 snap-x">
+          <!-- Images will be dynamically inserted here by Native Display Campaign-->
+        </div>
+        <!-- Navigation arrows -->
+        <button
+          id="prevBtn"
+          class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <button
+          id="nextBtn"
+          class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-50 rounded-full p-2"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+    </div>
+
     <!-- <div id="container">
         <div class="close">&times;</div>
         <img
@@ -134,19 +232,8 @@
   </body>
 
   <script type="text/javascript">
-    function renderCartDropOffPersonalisationCampaign(data) {
-      const name = data.kv.Name;
-      const product = data.kv.Cart;
-      const containerEl = document.getElementById("container");
-      const userNameEl = containerEl.querySelector("#user-name");
-      userNameEl.innerText = name;
-      const productNameEl = containerEl.querySelector("#product-name");
-      productNameEl.innerText = product;
-    }
     document.addEventListener("CT_web_native_display", function (event) {
-      console.log(event);
-      const data = event.detail;
-      renderCartDropOffPersonalisationCampaign(data);
+      console.log("Native display event received:", event);
     });
   </script>
 
