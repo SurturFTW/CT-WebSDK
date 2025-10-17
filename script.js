@@ -174,7 +174,7 @@ function handleCarouselNativeDisplay(data) {
 
   if (!carouselContainer || !data || !data.kv) {
     console.error("Missing carousel container or data");
-    // Hide the carousel section if no data
+    // Hide the carousel section if no data and if it exists
     if (carouselSection) {
       carouselSection.classList.remove("show");
     }
@@ -219,7 +219,10 @@ function handleCarouselNativeDisplay(data) {
 
   // Only show the carousel section if we have images
   if (images.length > 0) {
-    carouselSection.classList.add("show");
+    // Only try to show the carousel section if it exists
+    if (carouselSection) {
+      carouselSection.classList.add("show");
+    }
 
     // Simple image file extension check
     const imageRegex = /\.(png|jpe?g|gif|webp|svg)(\?.*)?$/i;
@@ -261,9 +264,6 @@ function handleCarouselNativeDisplay(data) {
 
     // Initialize carousel controls
     initImageCarousel();
-  } else {
-    // Hide the carousel section if no images
-    carouselSection.classList.remove("show");
   }
 }
 
