@@ -16,24 +16,14 @@ if (ServiceWorker in navigator) {
 
 function onLogin() {
   document.getElementById("login").addEventListener("click", function (event) {
-    // Get date from frontend input
-    const subscriptionExpiryDateInput = document.getElementById(
-      "subscriptionExpiryDate"
-    );
-    const expiryDate = subscriptionExpiryDateInput
-      ? new Date(subscriptionExpiryDateInput.value)
-      : null;
-
     clevertap.onUserLogin.push({
       Site: {
         Name: "Push Test", // String
-        Identity: 22222, // String or number
+        Identity: "+919137035855", // String or number
         Email: "pushtest@gmail.com", // Email address of the user
         Phone: "+56765676567", // Phone (with the country code),
         Gender: "M", // Can be either M or F
         DOB: new Date(), // Date of Birth. Date object
-
-        SubscriptionExpiryDate: expiryDate,
 
         // optional fields. controls whether the user will be sent email, push etc.
         "MSG-email": false, // Disable email notifications
@@ -43,7 +33,6 @@ function onLogin() {
       },
     });
     console.log("User logged in");
-    console.log("Test DateTime: ", subscriptionExpiryDateInput.value);
     // alert(clevertap.getClevertapID());
   });
 }
@@ -110,10 +99,27 @@ function newPopup() {
   });
 }
 
+function onCustomPopup() {
+  document.getElementById("btn8").addEventListener("click", function (event) {
+    alert("Article button clicked");
+    clevertap.event.push("Article Click");
+  });
+}
+
 function onExit() {
   document.getElementById("btn6").addEventListener("click", function (event) {
     console.log("Exit button clicked");
   });
+}
+
+function onScratchCard() {
+  document
+    .getElementById("scratchcard")
+    .addEventListener("click", function (event) {
+      console.log("Scratch card button clicked");
+      alert("Scratch card button clicked");
+      clevertap.event.push("Scratch Card");
+    });
 }
 
 function onnativeBanner() {
@@ -164,10 +170,20 @@ function initImageCarousel() {
 // Function to handle CleverTap Native Display data for the image carousel
 function handleCarouselNativeDisplay(data) {
   const carouselContainer = document.querySelector(".carousel-container");
+  const carouselSection = document.querySelector(".carousel-section");
 
   if (!carouselContainer || !data || !data.kv) {
     console.error("Missing carousel container or data");
+    // Hide the carousel section if no data
+    if (carouselSection) {
+      carouselSection.classList.remove("show");
+    }
     return;
+  }
+
+  // Fire notification viewed event
+  if (typeof clevertap !== "undefined" && clevertap.renderNotificationViewed) {
+    clevertap.renderNotificationViewed(data);
   }
 
   // Clear existing content
@@ -176,7 +192,16 @@ function handleCarouselNativeDisplay(data) {
   // Check if we have image data in the custom key-value pairs
   const images = [];
 
-  // Look for image URLs in the data.kv object (image1, image2, etc.)
+  // Check if we have unnumbered keys first
+  if (data.kv.image) {
+    images.push({
+      imageUrl: data.kv.image,
+      title: data.kv.title || "Default Title",
+      link: data.kv.link || "#",
+    });
+  }
+
+  // Then check for numbered keys (image1, image2, etc.)
   for (let i = 1; i <= 5; i++) {
     // Support up to 5 images
     const imageKey = `image${i}`;
@@ -192,46 +217,54 @@ function handleCarouselNativeDisplay(data) {
     }
   }
 
-  // Simple image file extension check
-  const imageRegex = /\.(png|jpe?g|gif|webp|svg)(\?.*)?$/i;
+  // Only show the carousel section if we have images
+  if (images.length > 0) {
+    carouselSection.classList.add("show");
 
-  // Create carousel items for each item
-  images.forEach((item, index) => {
-    const carouselItem = document.createElement("div");
-    carouselItem.className = "carousel-item";
+    // Simple image file extension check
+    const imageRegex = /\.(png|jpe?g|gif|webp|svg)(\?.*)?$/i;
 
-    const isImage = imageRegex.test(item.imageUrl);
+    // Create carousel items for each item
+    images.forEach((item, index) => {
+      const carouselItem = document.createElement("div");
+      carouselItem.className = "carousel-item";
 
-    if (isImage) {
-      // If it's an image URL, show it as an image
-      carouselItem.innerHTML = `
-        <a href="${item.link}" target="_blank">
-          <img src="${item.imageUrl}" alt="${item.title}" loading="lazy">
-          <div class="carousel-caption">${item.title}</div>
-        </a>
-      `;
-    } else {
-      // If it's not an image URL (like an article URL), show a card instead
-      carouselItem.innerHTML = `
-        <a href="${
-          item.link || item.imageUrl
-        }" target="_blank" style="display:block;height:200px;padding:15px;text-decoration:none;color:inherit;background:#f6f7fb;border-radius:8px;">
-          <div style="text-align:center;">
-            <h3 style="font-size:16px;margin:0 0 10px 0;">${item.title}</h3>
-            <p style="margin:0;color:#555;font-size:13px;overflow:hidden;text-overflow:ellipsis;">${item.imageUrl.substring(
-              0,
-              80
-            )}...</p>
-          </div>
-        </a>
-      `;
-    }
+      const isImage = imageRegex.test(item.imageUrl);
 
-    carouselContainer.appendChild(carouselItem);
-  });
+      if (isImage) {
+        // If it's an image URL, show it as an image
+        carouselItem.innerHTML = `
+          <a href="${item.link}" target="_blank">
+            <img src="${item.imageUrl}" alt="${item.title}" loading="lazy">
+            <div class="carousel-caption">${item.title}</div>
+          </a>
+        `;
+      } else {
+        // If it's not an image URL (like an article URL), show a card instead
+        carouselItem.innerHTML = `
+          <a href="${
+            item.link || item.imageUrl
+          }" target="_blank" style="display:block;height:200px;padding:15px;text-decoration:none;color:inherit;background:#f6f7fb;border-radius:8px;">
+            <div style="text-align:center;">
+              <h3 style="font-size:16px;margin:0 0 10px 0;">${item.title}</h3>
+              <p style="margin:0;color:#555;font-size:13px;overflow:hidden;text-overflow:ellipsis;">${item.imageUrl.substring(
+                0,
+                80
+              )}...</p>
+            </div>
+          </a>
+        `;
+      }
 
-  // Initialize carousel controls
-  initImageCarousel();
+      carouselContainer.appendChild(carouselItem);
+    });
+
+    // Initialize carousel controls
+    initImageCarousel();
+  } else {
+    // Hide the carousel section if no images
+    carouselSection.classList.remove("show");
+  }
 }
 
 // Listen for CleverTap native display events
