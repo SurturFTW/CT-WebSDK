@@ -15,6 +15,7 @@ if (ServiceWorker in navigator) {
 }
 
 function onLogin() {
+  clevertap.getLocation();
   document.getElementById("login").addEventListener("click", function (event) {
     clevertap.onUserLogin.push({
       Site: {
@@ -100,7 +101,7 @@ function newPopup() {
 }
 
 function onCustomPopup() {
-  document.getElementById("btn8").addEventListener("click", function (event) {
+  document.getElementById("btn7").addEventListener("click", function (event) {
     alert("Article button clicked");
     clevertap.event.push("Article Click");
   });
@@ -119,6 +120,15 @@ function onScratchCard() {
       console.log("Scratch card button clicked");
       alert("Scratch card button clicked");
       clevertap.event.push("Scratch Card");
+    });
+}
+
+function onStories() {
+  document
+    .getElementById("stories")
+    .addEventListener("click", function (event) {
+      console.log("Stories button clicked");
+      clevertap.event.push("Stories Event");
     });
 }
 
