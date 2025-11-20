@@ -141,7 +141,7 @@ function onnativeBanner() {
       test: true,
       source: "button_click",
     });
-    document.dispatchEvent(testEvent);
+    // document.dispatchEvent(testEvent);
   });
 }
 
@@ -156,6 +156,15 @@ function clearCache() {
     console.log("Clearing cache");
     localStorage.clear();
   });
+}
+
+function onSurveyForm() {
+  document
+    .getElementById("surveyform")
+    .addEventListener("click", function (event) {
+      console.log("Survey Form button clicked");
+      clevertap.event.push("Survey Form Event");
+    });
 }
 
 // Initialize the image carousel functionality for CleverTap native display
@@ -285,14 +294,14 @@ document.addEventListener("CT_web_native_display", function (event) {
   if (event.detail && event.detail.kv) {
     console.log("Native display keys:", Object.keys(event.detail.kv));
     console.log("Looking for topic:", event.detail.kv.topic);
-    console.log("Looking for displayType:", event.detail.kv.displayType);
+    // console.log("Looking for displayType:", event.detail.kv.displayType);
   }
 
   if (event.detail && event.detail.kv) {
     // Check if this is for our carousel by looking for either displayType or topic
     if (
       event.detail.kv.displayType === "imageCarousel" ||
-      event.detail.kv.topic === "imageCarousel"
+      event.detail.kv.topic === "blueprint"
     ) {
       handleCarouselNativeDisplay(event.detail);
     } else {
