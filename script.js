@@ -132,6 +132,13 @@ function onStories() {
     });
 }
 
+function onBFSale() {
+  document.getElementById("bfsale").addEventListener("click", function (event) {
+    console.log("Black Friday Sale button clicked");
+    clevertap.event.push("Black Friday Sale");
+  });
+}
+
 function onnativeBanner() {
   document.getElementById("btn3").addEventListener("click", function (event) {
     console.log("Native button clicked");
