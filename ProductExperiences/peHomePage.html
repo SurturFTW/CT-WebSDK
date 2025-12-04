@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Business Standard - Latest News & Analysis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              serif: ["Merriweather", "serif"],
+            },
+            colors: {
+              brand: {
+                red: "#9F2B2B",
+                dark: "#1a1a1a",
+                gray: "#f5f5f5",
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      @keyframes ticker {
+        0% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+      .ticker-wrap {
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      .ticker-move {
+        display: inline-block;
+        animation: ticker 30s linear infinite;
+      }
+    </style>
+  </head>
+  <body class="bg-white text-gray-900 font-sans antialiased">
+    <!-- Market Ticker -->
+    <div class="bg-gray-100 border-b border-gray-200 py-1 text-xs">
+      <div class="max-w-7xl mx-auto px-4 flex items-center justify-between">
+        <div
+          class="flex items-center space-x-4 overflow-hidden w-full lg:w-2/3"
+        >
+          <span class="font-bold text-brand-red uppercase shrink-0"
+            >Market Live</span
+          >
+          <div class="ticker-wrap w-full">
+            <div class="ticker-move space-x-8 text-gray-700 font-medium">
+              <span
+                ><span class="text-green-600">▲</span> SENSEX 72,400
+                (+0.8%)</span
+              >
+              <span
+                ><span class="text-red-600">▼</span> NIFTY 21,800 (-0.2%)</span
+              >
+              <span
+                ><span class="text-green-600">▲</span> GOLD 62,500 (+120)</span
+              >
+              <span
+                ><span class="text-green-600">▲</span> USD/INR 83.12
+                (+0.05)</span
+              >
+              <span
+                ><span class="text-red-600">▼</span> CRUDE 78.40 (-1.2%)</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="hidden lg:flex space-x-4 text-gray-500">
+          <a href="#" class="hover:text-brand-red">E-Paper</a>
+          <a href="#" class="hover:text-brand-red">Sign In</a>
+          <a href="./paymentPage.html" class="font-bold text-brand-red"
+            >Subscribe</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="border-b border-gray-300 sticky top-0 bg-white z-50">
+      <div
+        class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between"
+      >
+        <button class="lg:hidden p-2 text-gray-600">
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
+
+        <div class="flex-shrink-0 flex items-center">
+          <h1 class="font-serif text-2xl font-bold tracking-tight text-black">
+            Business <span class="text-brand-red">Standard</span>
+          </h1>
+        </div>
+
+        <div
+          class="hidden lg:flex space-x-6 text-sm font-semibold text-gray-700"
+        >
+          <a href="index.html" class="hover:text-brand-red text-brand-red"
+            >Home</a
+          >
+          <a href="#" class="hover:text-brand-red">Markets</a>
+          <a href="#" class="hover:text-brand-red">Companies</a>
+          <a href="#" class="hover:text-brand-red">Opinion</a>
+          <a href="#" class="hover:text-brand-red">Tech</a>
+          <a href="#" class="hover:text-brand-red">Specials</a>
+        </div>
+
+        <button class="text-gray-500 hover:text-brand-red">
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 py-8">
+      <!-- Hero Article -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        <div class="lg:col-span-2">
+          <a href="peHomePage.html" class="group block">
+            <img
+              src="https://images.unsplash.com/photo-1591696205602-2f950c417cb9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
+              alt="GDP Growth"
+              class="w-full h-96 object-cover rounded-sm mb-4"
+            />
+            <span class="text-brand-red text-xs font-bold uppercase"
+              >Economy</span
+            >
+            <h2
+              class="text-3xl font-bold font-serif text-gray-900 group-hover:text-brand-red mt-2 mb-3 leading-tight"
+            >
+              India's GDP growth outpaces estimates in Q3, driven by
+              manufacturing surge
+            </h2>
+            <p class="text-gray-600 font-serif leading-relaxed">
+              Data released by NSO shows the economy grew at 8.4% compared to
+              the projected 6.5%, signalling strong momentum ahead of the
+              general elections.
+            </p>
+          </a>
+        </div>
+
+        <div class="space-y-6">
+          <a href="peHomePage.html" class="group block border-b pb-6">
+            <img
+              src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+              alt="Market News"
+              class="w-full h-48 object-cover rounded-sm mb-3"
+            />
+            <span class="text-brand-red text-xs font-bold uppercase"
+              >Markets</span
+            >
+            <h3
+              class="text-lg font-bold text-gray-900 group-hover:text-brand-red mt-2 leading-tight"
+            >
+              Sensex hits new high as FII inflows continue
+            </h3>
+          </a>
+
+          <a href="peHomePage.html" class="group block">
+            <img
+              src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+              alt="Tech News"
+              class="w-full h-48 object-cover rounded-sm mb-3"
+            />
+            <span class="text-brand-red text-xs font-bold uppercase"
+              >Technology</span
+            >
+            <h3
+              class="text-lg font-bold text-gray-900 group-hover:text-brand-red mt-2 leading-tight"
+            >
+              Tesla scouts for showroom space in Delhi, Mumbai
+            </h3>
+          </a>
+        </div>
+      </div>
+
+      <!-- Latest Articles Grid -->
+      <div class="border-t border-gray-300 pt-8">
+        <h2
+          class="text-2xl font-bold text-gray-900 mb-6 uppercase border-b-2 border-brand-red pb-2 inline-block"
+        >
+          Latest News
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Article 1 -->
+          <a href="peHomePage.html" class="group">
+            <img
+              src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+              alt="Article"
+              class="w-full h-48 object-cover rounded-sm mb-3"
+            />
+            <span class="text-brand-red text-xs font-bold uppercase"
+              >Banking</span
+            >
+            <h3
+              class="text-lg font-bold text-gray-900 group-hover:text-brand-red mt-2 mb-2 leading-tight"
+            >
+              RBI keeps repo rate unchanged at 6.5% for sixth time
+            </h3>
+            <p class="text-sm text-gray-600 line-clamp-2">
+              The central bank maintains its hawkish stance on inflation while
+              acknowledging growth momentum.
+            </p>
+            <span class="text-xs text-gray-400 mt-2 block">2 hours ago</span>
+          </a>
+
+          <!-- Article 2 -->
+          <a href="peHomePage.html" class="group">
+            <img
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+              alt="Article"
+              class="w-full h-48 object-cover rounded-sm mb-3"
+            />
+            <span class="text-brand-red text-xs font-bold uppercase"
+              >Corporate</span
+            >
+            <h3
+              class="text-lg font-bold text-gray-900 group-hover:text-brand-red mt-2 mb-2 leading-tight"
+            >
+              Reliance Industries posts record quarterly profit
+            </h3>
+            <p class="text-sm text-gray-600 line-clamp-2">
+              Strong performance across retail and telecom segments drives
+              growth for the conglomerate.
+            </p>
+            <span class="text-xs text-gray-400 mt-2 block">4 hours ago</span>
+          </a>
+
+          <!-- Article 3 -->
+          <a href="peHomePage.html" class="group">
+            <img
+              src="https://images.unsplash.com/photo-1639322537228-f710d846310a?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+              alt="Article"
+              class="w-full h-48 object-cover rounded-sm mb-3"
+            />
+            <span class="text-brand-red text-xs font-bold uppercase"
+              >Policy</span
+            >
+            <h3
+              class="text-lg font-bold text-gray-900 group-hover:text-brand-red mt-2 mb-2 leading-tight"
+            >
+              Government announces new EV incentive scheme
+            </h3>
+            <p class="text-sm text-gray-600 line-clamp-2">
+              New policy aims to boost electric vehicle adoption with subsidies
+              and tax benefits.
+            </p>
+            <span class="text-xs text-gray-400 mt-2 block">6 hours ago</span>
+          </a>
+
+          <!-- Article 4 -->
+          <a href="peHomePage.html" class="group">
+            <img
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+              alt="Article"
+              class="w-full h-48 object-cover rounded-sm mb-3"
+            />
+            <span class="text-brand-red text-xs font-bold uppercase"
+              >Markets</span
+            >
+            <h3
+              class="text-lg font-bold text-gray-900 group-hover:text-brand-red mt-2 mb-2 leading-tight"
+            >
+              Gold prices hit record high amid global tensions
+            </h3>
+            <p class="text-sm text-gray-600 line-clamp-2">
+              Investors flock to safe-haven assets as geopolitical uncertainties
+              increase.
+            </p>
+            <span class="text-xs text-gray-400 mt-2 block">8 hours ago</span>
+          </a>
+
+          <!-- Article 5 -->
+          <a href="peHomePage.html" class="group">
+            <img
+              src="https://images.unsplash.com/photo-1553729459-efe14ef6055d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+              alt="Article"
+              class="w-full h-48 object-cover rounded-sm mb-3"
+            />
+            <span class="text-brand-red text-xs font-bold uppercase"
+              >Technology</span
+            >
+            <h3
+              class="text-lg font-bold text-gray-900 group-hover:text-brand-red mt-2 mb-2 leading-tight"
+            >
+              Paytm gets approval for UPI third-party app services
+            </h3>
+            <p class="text-sm text-gray-600 line-clamp-2">
+              NPCI grants permission allowing Paytm to continue UPI operations
+              through third-party providers.
+            </p>
+            <span class="text-xs text-gray-400 mt-2 block">10 hours ago</span>
+          </a>
+
+          <!-- Article 6 -->
+          <a href="peHomePage.html" class="group">
+            <img
+              src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80"
+              alt="Article"
+              class="w-full h-48 object-cover rounded-sm mb-3"
+            />
+            <span class="text-brand-red text-xs font-bold uppercase"
+              >Opinion</span
+            >
+            <h3
+              class="text-lg font-bold text-gray-900 group-hover:text-brand-red mt-2 mb-2 leading-tight"
+            >
+              Why India needs a robust AI regulation framework
+            </h3>
+            <p class="text-sm text-gray-600 line-clamp-2">
+              As AI adoption accelerates, the country must balance innovation
+              with ethical safeguards.
+            </p>
+            <span class="text-xs text-gray-400 mt-2 block">12 hours ago</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div
+        class="mt-16 bg-gradient-to-r from-brand-red to-red-800 text-white rounded-lg p-12 text-center"
+      >
+        <h2 class="text-3xl font-bold font-serif mb-4">
+          Get unlimited access to premium content
+        </h2>
+        <p class="text-lg mb-6 max-w-2xl mx-auto">
+          Subscribe now for exclusive insights, expert analysis, and breaking
+          news that matters to you.
+        </p>
+        <a
+          href="./paymentPage.html"
+          class="inline-block bg-white text-brand-red font-bold py-4 px-8 rounded-lg hover:bg-gray-100 transition shadow-lg text-lg"
+        >
+          Subscribe Now →
+        </a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white pt-12 pb-6 mt-12">
+      <div
+        class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 mb-8 text-sm"
+      >
+        <div>
+          <h5 class="font-bold uppercase tracking-wider text-gray-400 mb-4">
+            Company
+          </h5>
+          <ul class="space-y-2 text-gray-300">
+            <li><a href="#" class="hover:text-white">About Us</a></li>
+            <li><a href="#" class="hover:text-white">Contact Us</a></li>
+            <li><a href="#" class="hover:text-white">Careers</a></li>
+            <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="font-bold uppercase tracking-wider text-gray-400 mb-4">
+            Products
+          </h5>
+          <ul class="space-y-2 text-gray-300">
+            <li>
+              <a href="./paymentPage.html" class="hover:text-white"
+                >BS Premium</a
+              >
+            </li>
+            <li><a href="#" class="hover:text-white">Books</a></li>
+            <li><a href="#" class="hover:text-white">Events</a></li>
+            <li><a href="#" class="hover:text-white">Newsletter</a></li>
+          </ul>
+        </div>
+        <div class="col-span-2 md:col-span-2">
+          <h5 class="font-bold uppercase tracking-wider text-gray-400 mb-4">
+            Connect with Us
+          </h5>
+          <div class="flex space-x-4 mb-4">
+            <div
+              class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center"
+            >
+              fb
+            </div>
+            <div
+              class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center"
+            >
+              tw
+            </div>
+            <div
+              class="w-8 h-8 bg-gray-700 rounded-full flex items-center justify-center"
+            >
+              in
+            </div>
+          </div>
+          <p class="text-gray-500 text-xs">
+            Copyrights © 2024 Business Standard Private Ltd. All rights
+            reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

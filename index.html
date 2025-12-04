@@ -4,20 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="
-      default-src 'self' https://*.clevertap.com https://*.web-native-display-campaign.clevertap.com;
-      script-src 'self' 'unsafe-inline' https://*.wzrkt.com https://*.clevertap.com https://*.clevertap-prod.com https://*.web-native-display-campaign.clevertap.com https://cdn.tailwindcss.com;
-      script-src-elem 'self' 'unsafe-inline' https://*.clevertap.com https://*.wzrkt.com https://*.clevertap-prod.com https://*.web-native-display-campaign.clevertap.com https://cdn.tailwindcss.com https://d2r1yp2w7bby2u.cloudfront.net http://static.clevertap.com;
-      style-src 'self' 'unsafe-inline' https://*.wzrkt.com https://*.clevertap.com https://*.clevertap-prod.com https://*.web-native-display-campaign.clevertap.com;
-      img-src 'self' data: https: http:;
-      connect-src 'self' https://*.clevertap.com https://*.wzrkt.com https://*.clevertap-prod.com https://*.web-native-display-campaign.clevertap.com;
-      frame-src 'self';
-      frame-ancestors 'self';
-    "
-    />
-
     <style>
       .carousel-container {
         scroll-behavior: smooth;
@@ -634,6 +620,87 @@
             </div>
             <span class="text-sm font-medium text-card-foreground"
               >Black Friday Sale</span
+            >
+          </button>
+
+          <button
+            id="topbanner"
+            class="flex flex-col items-center justify-center p-4 rounded-lg border bg-card hover:shadow-md transition-all duration-200 group"
+            onClick="onTopBanner()"
+          >
+            <div
+              class="w-10 h-10 rounded-full bg-violet-100 flex items-center justify-center mb-2 group-hover:bg-violet-200 transition-colors"
+            >
+              <svg
+                class="w-5 h-5 text-violet-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                ></path>
+              </svg>
+            </div>
+            <span class="text-sm font-medium text-card-foreground"
+              >Top Banner</span
+            >
+          </button>
+
+          <button
+            id="bottombanner"
+            class="flex flex-col items-center justify-center p-4 rounded-lg border bg-card hover:shadow-md transition-all duration-200 group"
+            onClick="onBottomBanner()"
+          >
+            <div
+              class="w-10 h-10 rounded-full bg-violet-100 flex items-center justify-center mb-2 group-hover:bg-violet-200 transition-colors"
+            >
+              <svg
+                class="w-5 h-5 text-violet-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                ></path>
+              </svg>
+            </div>
+            <span class="text-sm font-medium text-card-foreground"
+              >Bottom Banner</span
+            >
+          </button>
+
+          <button
+            id="productexperiences"
+            class="flex flex-col items-center justify-center p-4 rounded-lg border bg-card hover:shadow-md transition-all duration-200 group"
+            onclick="onProductExperiences()"
+          >
+            <div
+              class="w-10 h-10 rounded-full bg-violet-100 flex items-center justify-center mb-2 group-hover:bg-violet-200 transition-colors"
+            >
+              <svg
+                class="w-5 h-5 text-violet-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                ></path>
+              </svg>
+            </div>
+            <span class="text-sm font-medium text-card-foreground"
+              >Product Experiences</span
             >
           </button>
 

@@ -19,18 +19,17 @@ function onLogin() {
   document.getElementById("login").addEventListener("click", function (event) {
     clevertap.onUserLogin.push({
       Site: {
-        Name: "Push Test", // String
-        Identity: "+919137035855", // String or number
-        Email: "pushtest@gmail.com", // Email address of the user
-        Phone: "+56765676567", // Phone (with the country code),
-        Gender: "M", // Can be either M or F
-        DOB: new Date(), // Date of Birth. Date object
+        Name: "Push Test",
+        Identity: "+919137035855",
+        Email: "pushtest@gmail.com",
+        Phone: "+56765676567",
+        Gender: "M",
+        DOB: new Date(),
 
-        // optional fields. controls whether the user will be sent email, push etc.
-        "MSG-email": false, // Disable email notifications
-        "MSG-push": true, // Enable push notifications
-        "MSG-sms": true, // Enable sms notifications
-        "MSG-whatsapp": true, // Enable WhatsApp notifications
+        "MSG-email": false,
+        "MSG-push": true,
+        "MSG-sms": true,
+        "MSG-whatsapp": true,
       },
     });
     console.log("User logged in");
@@ -321,3 +320,29 @@ document.addEventListener("CT_web_native_display", function (event) {
 document.addEventListener("DOMContentLoaded", function () {
   initImageCarousel();
 });
+
+function onBottomBanner() {
+  document
+    .getElementById("bottombanner")
+    .addEventListener("click", function (event) {
+      console.log("Bottom Banner button clicked");
+      clevertap.event.push("Bottom Banner");
+    });
+}
+
+function onTopBanner() {
+  document
+    .getElementById("topbanner")
+    .addEventListener("click", function (event) {
+      console.log("Top Banner button clicked");
+      clevertap.event.push("Top Banner");
+    });
+}
+
+function onProductExperiences() {
+  document
+    .getElementById("productexperiences")
+    .addEventListener("click", function (event) {
+      window.location.href = "./ProductExperiences/peHomePage.html";
+    });
+}
