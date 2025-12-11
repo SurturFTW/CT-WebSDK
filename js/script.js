@@ -19,17 +19,17 @@ function onLogin() {
   document.getElementById("login").addEventListener("click", function (event) {
     clevertap.onUserLogin.push({
       Site: {
-        Name: "Push Test",
-        Identity: "+919137035855",
-        Email: "pushtest@gmail.com",
-        Phone: "+56765676567",
-        Gender: "M",
-        DOB: new Date(),
+        // Name: "Push Test",
+        Identity: "1912",
+        // Email: "pushtest@gmail.com",
+        // Phone: "+56765676567",
+        // Gender: "M",
+        // DOB: new Date(),
 
-        "MSG-email": false,
-        "MSG-push": true,
-        "MSG-sms": true,
-        "MSG-whatsapp": true,
+        // "MSG-email": false,
+        // "MSG-push": true,
+        // "MSG-sms": true,
+        // "MSG-whatsapp": true,
       },
     });
     console.log("User logged in");
@@ -343,6 +343,6 @@ function onProductExperiences() {
   document
     .getElementById("productexperiences")
     .addEventListener("click", function (event) {
-      window.location.href = "./ProductExperiences/peHomePage.html";
+      window.location.href = "./ProductExperiences/pePaymentPage.html";
     });
 }
