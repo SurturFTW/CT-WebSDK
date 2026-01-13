@@ -142,11 +142,7 @@ function onnativeBanner() {
   document.getElementById("btn3").addEventListener("click", function (event) {
     console.log("Native button clicked");
     // Push the event that will trigger the native display
-    clevertap.event.push("Native Event", {
-      // You can add any properties here that might be useful for targeting
-      test: true,
-      source: "button_click",
-    });
+    clevertap.event.push("Native Event", {});
     // document.dispatchEvent(testEvent);
   });
 }
@@ -170,6 +166,15 @@ function onSurveyForm() {
     .addEventListener("click", function (event) {
       console.log("Survey Form button clicked");
       clevertap.event.push("Survey Form Event");
+    });
+}
+
+function onInstallApp() {
+  document
+    .getElementById("installapp")
+    .addEventListener("click", function (event) {
+      console.log("Install App button clicked");
+      clevertap.event.push("inapp_action");
     });
 }
 
