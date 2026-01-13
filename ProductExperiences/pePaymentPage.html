@@ -3,12 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/x-icon" href="../ct-favicon.png" />
+
     <title>Subscribe to Business Standard Premium</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap"
       rel="stylesheet"
     />
+
+    <script type="text/javascript">
+      var REGION = "eu1";
+      var TOKEN = "611-aa6";
+
+      var clevertap = {
+        event: [],
+        profile: [],
+        account: [],
+        onUserLogin: [],
+        notifications: [],
+        privacy: [],
+        region: REGION,
+        token: TOKEN,
+      };
+      clevertap.account.push({ id: "677-ZZ6-7K7Z" });
+      clevertap.privacy.push({ optOut: false });
+      clevertap.privacy.push({ useIP: false });
+
+      (function () {
+        var wzrk = document.createElement("script");
+        wzrk.type = "text/javascript";
+        wzrk.async = true;
+        wzrk.src =
+          ("https:" == document.location.protocol
+            ? "https://d2r1yp2w7bby2u.cloudfront.net"
+            : "http://static.clevertap.com") + "/js/clevertap.min.js";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(wzrk, s);
+      })();
+    </script>
+
     <script>
       tailwind.config = {
         theme: {
@@ -46,7 +81,7 @@
           >
         </div>
         <a
-          href="./peHomePage.html"
+          href="../index.html"
           class="text-sm text-gray-600 hover:text-brand-red"
         >
           ← Back to Home
@@ -67,6 +102,27 @@
         </p>
       </div>
 
+      <!-- Banner Section -->
+      <div class="mb-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <img
+            id="bannerImage1"
+            alt="Banner 1"
+            class="w-full h-48 object-cover rounded-lg shadow-md"
+          />
+          <img
+            id="bannerImage2"
+            alt="Banner 2"
+            class="w-full h-48 object-cover rounded-lg shadow-md"
+          />
+          <img
+            id="bannerImage3"
+            alt="Banner 3"
+            class="w-full h-48 object-cover rounded-lg shadow-md"
+          />
+        </div>
+      </div>
+
       <!-- Pricing Cards -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
         <!-- Monthly Plan -->
@@ -76,7 +132,9 @@
           <div class="text-center mb-6">
             <h3 class="text-xl font-bold text-gray-900 mb-2">Monthly</h3>
             <div class="flex items-baseline justify-center mb-2">
-              <span class="text-4xl font-bold text-gray-900">₹299</span>
+              <span id="monthlyPrice" class="text-4xl font-bold text-gray-900"
+                >₹299</span
+              >
               <span class="text-gray-600 ml-2">/month</span>
             </div>
             <p class="text-sm text-gray-500">Billed monthly</p>
@@ -163,10 +221,12 @@
           <div class="text-center mb-6">
             <h3 class="text-xl font-bold text-gray-900 mb-2">Annual</h3>
             <div class="flex items-baseline justify-center mb-2">
-              <span class="text-4xl font-bold text-brand-red">₹2,499</span>
+              <span id="annualPrice" class="text-4xl font-bold text-brand-red"
+                >₹2,499</span
+              >
               <span class="text-gray-600 ml-2">/year</span>
             </div>
-            <p class="text-sm text-green-600 font-semibold">
+            <p id="annualSavings" class="text-sm text-green-600 font-semibold">
               Save 30% (₹1,089)
             </p>
           </div>
@@ -245,10 +305,17 @@
           <div class="text-center mb-6">
             <h3 class="text-xl font-bold text-gray-900 mb-2">Quarterly</h3>
             <div class="flex items-baseline justify-center mb-2">
-              <span class="text-4xl font-bold text-gray-900">₹799</span>
+              <span id="quarterlyPrice" class="text-4xl font-bold text-gray-900"
+                >₹799</span
+              >
               <span class="text-gray-600 ml-2">/3 months</span>
             </div>
-            <p class="text-sm text-green-600 font-semibold">Save 11% (₹98)</p>
+            <p
+              id="quarterlySavings"
+              class="text-sm text-green-600 font-semibold"
+            >
+              Save 11% (₹98)
+            </p>
           </div>
           <ul class="space-y-3 mb-8">
             <li class="flex items-start">
@@ -482,29 +549,6 @@
       </div>
     </footer>
 
-    <script>
-      function selectPlan(planType, price) {
-        // Track the plan selection event with CleverTap
-        if (typeof clevertap !== "undefined") {
-          clevertap.event.push("Subscription Plan Selected", {
-            plan_type: planType,
-            price: price,
-            currency: "INR",
-          });
-        }
-
-        // Store plan details and redirect to checkout
-        sessionStorage.setItem(
-          "selectedPlan",
-          JSON.stringify({
-            type: planType,
-            price: price,
-          })
-        );
-
-        // Redirect to checkout page
-        window.location.href = "checkout.html";
-      }
-    </script>
+    <script src="/js/pe-variables.js" type="text/javascript"></script>
   </body>
 </html>

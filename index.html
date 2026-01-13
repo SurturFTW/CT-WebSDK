@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <link rel="icon" type="image/x-icon" href="ct-favicon.png" />
+
     <style>
       .carousel-container {
         scroll-behavior: smooth;
@@ -71,6 +73,7 @@
         privacy: [],
       };
       clevertap.account.push({ id: "TEST-865-ZRW-7K7Z" });
+      // clevertap.account.push({ id: "677-ZZ6-7K7Z" });
       clevertap.privacy.push({ optOut: false });
       clevertap.privacy.push({ useIP: true });
       (function () {
@@ -678,6 +681,33 @@
           </button>
 
           <button
+            id="installapp"
+            class="flex flex-col items-center justify-center p-4 rounded-lg border bg-card hover:shadow-md transition-all duration-200 group"
+            onClick="onInstallApp()"
+          >
+            <div
+              class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center mb-2 group-hover:bg-emerald-200 transition-colors"
+            >
+              <svg
+                class="w-5 h-5 text-emerald-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+            </div>
+            <span class="text-sm font-medium text-card-foreground"
+              >Install App</span
+            >
+          </button>
+
+          <button
             id="productexperiences"
             class="flex flex-col items-center justify-center p-4 rounded-lg border bg-card hover:shadow-md transition-all duration-200 group"
             onclick="onProductExperiences()"
@@ -896,6 +926,6 @@
       });
     </script>
 
-    <script src="./script.js" type="text/javascript"></script>
+    <script src="./js/script.js" type="text/javascript"></script>
   </body>
 </html>

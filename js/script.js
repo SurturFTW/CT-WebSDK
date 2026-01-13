@@ -19,17 +19,17 @@ function onLogin() {
   document.getElementById("login").addEventListener("click", function (event) {
     clevertap.onUserLogin.push({
       Site: {
-        Name: "Push Test",
-        Identity: "+919137035855",
-        Email: "pushtest@gmail.com",
-        Phone: "+56765676567",
-        Gender: "M",
-        DOB: new Date(),
+        // Name: "Push Test",
+        Identity: "1912",
+        // Email: "pushtest@gmail.com",
+        // Phone: "+56765676567",
+        // Gender: "M",
+        // DOB: new Date(),
 
-        "MSG-email": false,
-        "MSG-push": true,
-        "MSG-sms": true,
-        "MSG-whatsapp": true,
+        // "MSG-email": false,
+        // "MSG-push": true,
+        // "MSG-sms": true,
+        // "MSG-whatsapp": true,
       },
     });
     console.log("User logged in");
@@ -142,11 +142,7 @@ function onnativeBanner() {
   document.getElementById("btn3").addEventListener("click", function (event) {
     console.log("Native button clicked");
     // Push the event that will trigger the native display
-    clevertap.event.push("Native Event", {
-      // You can add any properties here that might be useful for targeting
-      test: true,
-      source: "button_click",
-    });
+    clevertap.event.push("Native Event", {});
     // document.dispatchEvent(testEvent);
   });
 }
@@ -170,6 +166,15 @@ function onSurveyForm() {
     .addEventListener("click", function (event) {
       console.log("Survey Form button clicked");
       clevertap.event.push("Survey Form Event");
+    });
+}
+
+function onInstallApp() {
+  document
+    .getElementById("installapp")
+    .addEventListener("click", function (event) {
+      console.log("Install App button clicked");
+      clevertap.event.push("inapp_action");
     });
 }
 
@@ -343,6 +348,6 @@ function onProductExperiences() {
   document
     .getElementById("productexperiences")
     .addEventListener("click", function (event) {
-      window.location.href = "./ProductExperiences/peHomePage.html";
+      window.location.href = "./ProductExperiences/pePaymentPage.html";
     });
 }
