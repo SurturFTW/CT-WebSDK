@@ -11,13 +11,16 @@ function initializeCleverTapVariables() {
 
   console.log("CleverTap loaded, initializing variables...");
 
-  clevertap.setLogLevel(4); // Set log level to 4 for debugging
+  clevertap.setLogLevel(4);
 
   // Define CleverTap variables organized by category
-  clevertap.defineVariable("Banner", {
-    banner_image_1: "",
-    banner_image_2: "",
-    banner_image_3: "",
+  clevertap.defineVariable("Web_Banner", {
+    banner_image_1:
+      "https://bsmedia.business-standard.com/_media/bs/img/hp/home-page/2025-12/11/9343/full/1743646168-6087.jpg?im=FitAndFill=(685,385)",
+    banner_image_2:
+      "https://bsmedia.business-standard.com/_media/bs/img/article/2025-12/05/full/1764910353-6395.jpg?im=FeatureCrop,size=(826,465)",
+    banner_image_3:
+      "https://bsmedia.business-standard.com/_media/bs/img/article/2025-12/05/full/1764910531-0029.jpg?im=FitAndFill=(826,465)",
   });
 
   clevertap.defineVariable("Header", {
@@ -45,7 +48,7 @@ function initializeCleverTapVariables() {
   // Update page content with variable values
   function updatePageContent() {
     // Get variable values
-    const bannerValue = clevertap.getVariableValue("Banner");
+    const bannerValue = clevertap.getVariableValue("Web_Banner");
     const headerValue = clevertap.getVariableValue("Header");
     const pricingValue = clevertap.getVariableValue("Pricing");
     const discountValue = clevertap.getVariableValue("Discount");
@@ -58,6 +61,21 @@ function initializeCleverTapVariables() {
       discount: discountValue,
       features: featuresValue,
     });
+
+    // Update banner images
+    const bannerImage1 = document.getElementById("bannerImage1");
+    const bannerImage2 = document.getElementById("bannerImage2");
+    const bannerImage3 = document.getElementById("bannerImage3");
+
+    if (bannerImage1 && bannerValue && bannerValue["banner_image_1"]) {
+      bannerImage1.src = bannerValue["banner_image_1"];
+    }
+    if (bannerImage2 && bannerValue && bannerValue["banner_image_2"]) {
+      bannerImage2.src = bannerValue["banner_image_2"];
+    }
+    if (bannerImage3 && bannerValue && bannerValue["banner_image_3"]) {
+      bannerImage3.src = bannerValue["banner_image_3"];
+    }
 
     // Update header
     const mainHeading = document.querySelector("h1.text-4xl");
@@ -100,7 +118,7 @@ function initializeCleverTapVariables() {
     const featureLists = document.querySelectorAll("ul.space-y-3");
     if (featureLists.length >= 1 && featuresValue) {
       const features = featureLists[0].querySelectorAll(
-        "li span.text-gray-700"
+        "li span.text-gray-700",
       );
       if (features[0]) {
         features[0].textContent = featuresValue.premium_feature_1;
@@ -115,19 +133,19 @@ function initializeCleverTapVariables() {
     if (buttons[0] && pricingValue) {
       buttons[0].setAttribute(
         "onclick",
-        `selectPlan('monthly', ${pricingValue.monthly_price})`
+        `selectPlan('monthly', ${pricingValue.monthly_price})`,
       );
     }
     if (buttons[1] && pricingValue) {
       buttons[1].setAttribute(
         "onclick",
-        `selectPlan('annual', ${pricingValue.annual_price})`
+        `selectPlan('annual', ${pricingValue.annual_price})`,
       );
     }
     if (buttons[2] && pricingValue) {
       buttons[2].setAttribute(
         "onclick",
-        `selectPlan('quarterly', ${pricingValue.quarterly_price})`
+        `selectPlan('quarterly', ${pricingValue.quarterly_price})`,
       );
     }
   }
@@ -138,15 +156,15 @@ function initializeCleverTapVariables() {
     updatePageContent();
   }); */
 
-  /* clevertap.syncVariables(
-    () => {
-      updatePageContent();
-      console.log("✅ Variable sync initiated");
-    },
-    (error) => {
-      console.log("❌ Variable sync initiation failed", error);
-    }
-  ); */
+  // clevertap.syncVariables(
+  //   () => {
+  //     updatePageContent();
+  //     console.log("✅ Variable sync initiated");
+  //   },
+  //   (error) => {
+  //     console.log("❌ Variable sync initiation failed", error);
+  //   }
+  // );
 
   clevertap.fetchVariables(
     () => {
@@ -155,8 +173,8 @@ function initializeCleverTapVariables() {
     },
     (error) => {
       console.log("❌ Variable sync failed - using default values", error);
-      updatePageContent(); // Still update with defaults
-    }
+      updatePageContent();
+    },
   );
 
   // Make selectPlan globally available
@@ -167,7 +185,7 @@ function initializeCleverTapVariables() {
       JSON.stringify({
         type: planType,
         price: price,
-      })
+      }),
     );
 
     // Redirect to checkout page

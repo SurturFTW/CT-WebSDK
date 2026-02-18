@@ -20,8 +20,8 @@ function onLogin() {
     clevertap.onUserLogin.push({
       Site: {
         // Name: "Push Test",
-        Identity: "1912",
-        // Email: "pushtest@gmail.com",
+        Identity: "1914",
+        // Email: " ",
         // Phone: "+56765676567",
         // Gender: "M",
         // DOB: new Date(),
@@ -37,12 +37,17 @@ function onLogin() {
   });
 }
 
-/* clevertap.profile.push({
-  Site: {
-    "Customer Type": "Silver",
-    "Prefered Language": "English",
-  },
-}); */
+// function onProfilePush() {
+//   document
+//     .getElementById("profilepush")
+//     .addEventListener("click", function (event) {
+//       clevertap.profile.push({
+//         Identity: "112233",
+//         Email: "hhaaayyy@clevertap.com",
+//       });
+//       console.log("Profile push executed");
+//     });
+// }
 
 function viewProduct() {
   document.getElementById("btn1").addEventListener("click", function (event) {
@@ -178,6 +183,15 @@ function onInstallApp() {
     });
 }
 
+function onTestPopup() {
+  document
+    .getElementById("testpopup")
+    .addEventListener("click", function (event) {
+      console.log("Test Popup button clicked");
+      clevertap.event.push("React Web Test");
+    });
+}
+
 // Initialize the image carousel functionality for CleverTap native display
 function initImageCarousel() {
   const prevBtn = document.getElementById("prevBtn");
@@ -282,7 +296,7 @@ function handleCarouselNativeDisplay(data) {
               <h3 style="font-size:16px;margin:0 0 10px 0;">${item.title}</h3>
               <p style="margin:0;color:#555;font-size:13px;overflow:hidden;text-overflow:ellipsis;">${item.imageUrl.substring(
                 0,
-                80
+                80,
               )}...</p>
             </div>
           </a>
