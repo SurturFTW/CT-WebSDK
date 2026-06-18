@@ -2,39 +2,41 @@
 // each of the following fields is optional
 
 if (ServiceWorker in navigator) {
-  navigator.serviceWorker
-    .register("clevertap_sw.js")
-    .then(function (registration) {
-      console.log("Service Worker Registered");
-      console.log(registration);
-    })
-    .catch(function (error) {
-      console.log("Service Worker Registration Failed");
-      console.log(error);
-    });
+    navigator.serviceWorker
+        .register("clevertap_sw.js")
+        .then(function (registration) {
+            console.log("Service Worker Registered");
+            console.log(registration);
+        })
+        .catch(function (error) {
+            console.log("Service Worker Registration Failed");
+            console.log(error);
+        });
 }
 
 function onLogin() {
-  clevertap.getLocation();
-  document.getElementById("login").addEventListener("click", function (event) {
-    clevertap.onUserLogin.push({
-      Site: {
-        // Name: "Push Test",
-        Identity: "1914",
-        // Email: " ",
-        // Phone: "+56765676567",
-        // Gender: "M",
-        // DOB: new Date(),
+    clevertap.getLocation();
+    document
+        .getElementById("login")
+        .addEventListener("click", function (event) {
+            clevertap.onUserLogin.push({
+                Site: {
+                    // Name: "Push Test",
+                    Identity: "1914",
+                    // Email: " ",
+                    // Phone: "+56765676567",
+                    // Gender: "M",
+                    // DOB: new Date(),
 
-        // "MSG-email": false,
-        // "MSG-push": true,
-        // "MSG-sms": true,
-        // "MSG-whatsapp": true,
-      },
-    });
-    console.log("User logged in");
-    // alert(clevertap.getClevertapID());
-  });
+                    // "MSG-email": false,
+                    // "MSG-push": true,
+                    // "MSG-sms": true,
+                    // "MSG-whatsapp": true,
+                },
+            });
+            console.log("User logged in");
+            // alert(clevertap.getClevertapID());
+        });
 }
 
 // function onProfilePush() {
@@ -50,318 +52,336 @@ function onLogin() {
 // }
 
 function viewProduct() {
-  document.getElementById("btn1").addEventListener("click", function (event) {
-    alert("button clicked!");
-    clevertap.event.push("Product Viewed", {
-      "Product name": "Casio Chronograph Watch",
-      Category: "Mens Accessories",
-      Price: 59.99,
-      Date: new Date(),
+    document.getElementById("btn1").addEventListener("click", function (event) {
+        alert("button clicked!");
+        clevertap.event.push("Product Viewed", {
+            "Product name": "Casio Chronograph Watch",
+            Category: "Mens Accessories",
+            Price: 59.99,
+            Date: new Date(),
+        });
     });
-  });
 }
 
 function onSubscribe() {
-  document.getElementById("btn2").addEventListener("click", function (event) {
-    alert("Clicked Subscribe");
-    clevertap.notifications.push({
-      titleText: "Would you like to receive Push Notifications?",
-      bodyText:
-        "We promise to only send you relevant content and give you updates on your transactions",
-      okButtonText: "Sign me up!",
-      rejectButtonText: "No thanks",
-      okButtonColor: "#f28046",
+    document.getElementById("btn2").addEventListener("click", function (event) {
+        alert("Clicked Subscribe");
+        clevertap.notifications.push({
+            titleText: "Would you like to receive Push Notifications?",
+            bodyText:
+                "We promise to only send you relevant content and give you updates on your transactions",
+            okButtonText: "Sign me up!",
+            rejectButtonText: "No thanks",
+            okButtonColor: "#f28046",
+        });
     });
-  });
 }
 
 function onWebPush() {
-  document.getElementById("btn4").addEventListener("click", function (event) {
-    alert("Clicked web push button");
-    clevertap.event.push("Web-push Event");
-  });
+    document.getElementById("btn4").addEventListener("click", function (event) {
+        alert("Clicked web push button");
+        clevertap.event.push("Web-push Event");
+    });
 }
 
 function onPopup() {
-  document.getElementById("btn5").addEventListener("click", function (event) {
-    alert("Web popup button clicked");
-    clevertap.event.push("Web-Popup Event");
-  });
+    document.getElementById("btn5").addEventListener("click", function (event) {
+        alert("Web popup button clicked");
+        clevertap.event.push("Web-Popup Event");
+    });
 }
 
 function newPopup() {
-  document.getElementById("btn7").addEventListener("click", function (event) {
-    clevertap.notifications.push({
-      titleText: "Would you like to receive Push Notifications?",
-      bodyText:
-        "We promise to only send you relevant content and give you updates on your transactions",
-      okButtonText: "Sign me up!",
-      rejectButtonText: "No thanks",
-      okButtonColor: "#F28046",
-      askAgainTimeInSeconds: 5,
+    document.getElementById("btn7").addEventListener("click", function (event) {
+        clevertap.notifications.push({
+            titleText: "Would you like to receive Push Notifications?",
+            bodyText:
+                "We promise to only send you relevant content and give you updates on your transactions",
+            okButtonText: "Sign me up!",
+            rejectButtonText: "No thanks",
+            okButtonColor: "#F28046",
+            askAgainTimeInSeconds: 5,
+        });
+        console.log("New popup button clicked");
     });
-    console.log("New popup button clicked");
-  });
 }
 
 function onCustomPopup() {
-  document.getElementById("btn7").addEventListener("click", function (event) {
-    alert("Article button clicked");
-    clevertap.event.push("Article Click");
-  });
+    document.getElementById("btn7").addEventListener("click", function (event) {
+        alert("Article button clicked");
+        clevertap.event.push("Article Click");
+    });
 }
 
 function onExit() {
-  document.getElementById("btn6").addEventListener("click", function (event) {
-    console.log("Exit button clicked");
-  });
+    document.getElementById("btn6").addEventListener("click", function (event) {
+        console.log("Exit button clicked");
+    });
 }
 
 function onScratchCard() {
-  document
-    .getElementById("scratchcard")
-    .addEventListener("click", function (event) {
-      console.log("Scratch card button clicked");
-      alert("Scratch card button clicked");
-      clevertap.event.push("Scratch Card");
-    });
+    document
+        .getElementById("scratchcard")
+        .addEventListener("click", function (event) {
+            console.log("Scratch card button clicked");
+            alert("Scratch card button clicked");
+            clevertap.event.push("Scratch Card");
+        });
 }
 
 function onStories() {
-  document
-    .getElementById("stories")
-    .addEventListener("click", function (event) {
-      console.log("Stories button clicked");
-      clevertap.event.push("Stories Event");
-    });
+    document
+        .getElementById("stories")
+        .addEventListener("click", function (event) {
+            console.log("Stories button clicked");
+            clevertap.event.push("Stories Event");
+        });
 }
 
 function onBFSale() {
-  document.getElementById("bfsale").addEventListener("click", function (event) {
-    console.log("Black Friday Sale button clicked");
-    clevertap.event.push("Black Friday Sale");
-  });
+    document
+        .getElementById("bfsale")
+        .addEventListener("click", function (event) {
+            console.log("Black Friday Sale button clicked");
+            clevertap.event.push("Black Friday Sale");
+        });
 }
 
 function onnativeBanner() {
-  document.getElementById("btn3").addEventListener("click", function (event) {
-    console.log("Native button clicked");
-    // Push the event that will trigger the native display
-    clevertap.event.push("Native Event", {});
-    // document.dispatchEvent(testEvent);
-  });
+    document.getElementById("btn3").addEventListener("click", function (event) {
+        console.log("Native button clicked");
+        // Push the event that will trigger the native display
+        clevertap.event.push("Native Event", {});
+        // document.dispatchEvent(testEvent);
+    });
 }
 
 function getCTid() {
-  document.getElementById("ctid").addEventListener("click", function (event) {
-    console.log("Clevertap ID: " + clevertap.getCleverTapID());
-  });
+    document.getElementById("ctid").addEventListener("click", function (event) {
+        console.log("Clevertap ID: " + clevertap.getCleverTapID());
+    });
 }
 
 function clearCache() {
-  document.getElementById("clear").addEventListener("click", function (event) {
-    console.log("Clearing cache");
-    localStorage.clear();
-  });
+    document
+        .getElementById("clear")
+        .addEventListener("click", function (event) {
+            console.log("Clearing cache");
+            localStorage.clear();
+        });
 }
 
 function onSurveyForm() {
-  document
-    .getElementById("surveyform")
-    .addEventListener("click", function (event) {
-      console.log("Survey Form button clicked");
-      clevertap.event.push("Survey Form Event");
-    });
+    document
+        .getElementById("surveyform")
+        .addEventListener("click", function (event) {
+            console.log("Survey Form button clicked");
+            clevertap.event.push("Survey Form Event");
+        });
 }
 
 function onInstallApp() {
-  document
-    .getElementById("installapp")
-    .addEventListener("click", function (event) {
-      console.log("Install App button clicked");
-      clevertap.event.push("inapp_action");
-    });
+    document
+        .getElementById("installapp")
+        .addEventListener("click", function (event) {
+            console.log("Install App button clicked");
+            clevertap.event.push("inapp_action");
+        });
 }
 
 function onTestPopup() {
-  document
-    .getElementById("testpopup")
-    .addEventListener("click", function (event) {
-      console.log("Test Popup button clicked");
-      clevertap.event.push("React Web Test");
-    });
+    document
+        .getElementById("testpopup")
+        .addEventListener("click", function (event) {
+            console.log("Test Popup button clicked");
+            clevertap.event.push("React Web Test");
+        });
 }
 
 // Initialize the image carousel functionality for CleverTap native display
 function initImageCarousel() {
-  const prevBtn = document.getElementById("prevBtn");
-  const nextBtn = document.getElementById("nextBtn");
-  const carouselContainer = document.querySelector(".carousel-container");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const carouselContainer = document.querySelector(".carousel-container");
 
-  if (prevBtn && nextBtn && carouselContainer) {
-    // Scroll left on previous button click
-    prevBtn.addEventListener("click", () => {
-      carouselContainer.scrollBy({ left: -300, behavior: "smooth" });
-    });
+    if (prevBtn && nextBtn && carouselContainer) {
+        // Scroll left on previous button click
+        prevBtn.addEventListener("click", () => {
+            carouselContainer.scrollBy({ left: -300, behavior: "smooth" });
+        });
 
-    // Scroll right on next button click
-    nextBtn.addEventListener("click", () => {
-      carouselContainer.scrollBy({ left: 300, behavior: "smooth" });
-    });
-  }
+        // Scroll right on next button click
+        nextBtn.addEventListener("click", () => {
+            carouselContainer.scrollBy({ left: 300, behavior: "smooth" });
+        });
+    }
 }
 
 // Function to handle CleverTap Native Display data for the image carousel
 function handleCarouselNativeDisplay(data) {
-  const carouselContainer = document.querySelector(".carousel-container");
-  const carouselSection = document.querySelector(".carousel-section");
+    const carouselContainer = document.querySelector(".carousel-container");
+    const carouselSection = document.querySelector(".carousel-section");
 
-  if (!carouselContainer || !data || !data.kv) {
-    console.error("Missing carousel container or data");
-    // Hide the carousel section if no data and if it exists
-    if (carouselSection) {
-      carouselSection.classList.remove("show");
-    }
-    return;
-  }
-
-  // Fire notification viewed event
-  if (typeof clevertap !== "undefined" && clevertap.renderNotificationViewed) {
-    clevertap.renderNotificationViewed(data);
-  }
-
-  // Clear existing content
-  carouselContainer.innerHTML = "";
-
-  // Check if we have image data in the custom key-value pairs
-  const images = [];
-
-  // Check if we have unnumbered keys first
-  if (data.kv.image) {
-    images.push({
-      imageUrl: data.kv.image,
-      title: data.kv.title || "Default Title",
-      link: data.kv.link || "#",
-    });
-  }
-
-  // Then check for numbered keys (image1, image2, etc.)
-  for (let i = 1; i <= 5; i++) {
-    // Support up to 5 images
-    const imageKey = `image${i}`;
-    const titleKey = `title${i}`;
-    const linkKey = `link${i}`;
-
-    if (data.kv[imageKey]) {
-      images.push({
-        imageUrl: data.kv[imageKey],
-        title: data.kv[titleKey] || `Product ${i}`,
-        link: data.kv[linkKey] || "#",
-      });
-    }
-  }
-
-  // Only show the carousel section if we have images
-  if (images.length > 0) {
-    // Only try to show the carousel section if it exists
-    if (carouselSection) {
-      carouselSection.classList.add("show");
+    if (!carouselContainer || !data || !data.kv) {
+        console.error("Missing carousel container or data");
+        // Hide the carousel section if no data and if it exists
+        if (carouselSection) {
+            carouselSection.classList.remove("show");
+        }
+        return;
     }
 
-    // Simple image file extension check
-    const imageRegex = /\.(png|jpe?g|gif|webp|svg)(\?.*)?$/i;
+    // Fire notification viewed event
+    if (
+        typeof clevertap !== "undefined" &&
+        clevertap.renderNotificationViewed
+    ) {
+        clevertap.renderNotificationViewed(data);
+    }
 
-    // Create carousel items for each item
-    images.forEach((item, index) => {
-      const carouselItem = document.createElement("div");
-      carouselItem.className = "carousel-item";
+    // Clear existing content
+    carouselContainer.innerHTML = "";
 
-      const isImage = imageRegex.test(item.imageUrl);
+    // Check if we have image data in the custom key-value pairs
+    const images = [];
 
-      if (isImage) {
-        // If it's an image URL, show it as an image
-        carouselItem.innerHTML = `
+    // Check if we have unnumbered keys first
+    if (data.kv.image) {
+        images.push({
+            imageUrl: data.kv.image,
+            title: data.kv.title || "Default Title",
+            link: data.kv.link || "#",
+        });
+    }
+
+    // Then check for numbered keys (image1, image2, etc.)
+    for (let i = 1; i <= 5; i++) {
+        // Support up to 5 images
+        const imageKey = `image${i}`;
+        const titleKey = `title${i}`;
+        const linkKey = `link${i}`;
+
+        if (data.kv[imageKey]) {
+            images.push({
+                imageUrl: data.kv[imageKey],
+                title: data.kv[titleKey] || `Product ${i}`,
+                link: data.kv[linkKey] || "#",
+            });
+        }
+    }
+
+    // Only show the carousel section if we have images
+    if (images.length > 0) {
+        // Only try to show the carousel section if it exists
+        if (carouselSection) {
+            carouselSection.classList.add("show");
+        }
+
+        // Simple image file extension check
+        const imageRegex = /\.(png|jpe?g|gif|webp|svg)(\?.*)?$/i;
+
+        // Create carousel items for each item
+        images.forEach((item, index) => {
+            const carouselItem = document.createElement("div");
+            carouselItem.className = "carousel-item";
+
+            const isImage = imageRegex.test(item.imageUrl);
+
+            if (isImage) {
+                // If it's an image URL, show it as an image
+                carouselItem.innerHTML = `
           <a href="${item.link}" target="_blank">
             <img src="${item.imageUrl}" alt="${item.title}" loading="lazy">
             <div class="carousel-caption">${item.title}</div>
           </a>
         `;
-      } else {
-        // If it's not an image URL (like an article URL), show a card instead
-        carouselItem.innerHTML = `
+            } else {
+                // If it's not an image URL (like an article URL), show a card instead
+                carouselItem.innerHTML = `
           <a href="${
-            item.link || item.imageUrl
+              item.link || item.imageUrl
           }" target="_blank" style="display:block;height:200px;padding:15px;text-decoration:none;color:inherit;background:#f6f7fb;border-radius:8px;">
             <div style="text-align:center;">
               <h3 style="font-size:16px;margin:0 0 10px 0;">${item.title}</h3>
               <p style="margin:0;color:#555;font-size:13px;overflow:hidden;text-overflow:ellipsis;">${item.imageUrl.substring(
-                0,
-                80,
+                  0,
+                  80,
               )}...</p>
             </div>
           </a>
         `;
-      }
+            }
 
-      carouselContainer.appendChild(carouselItem);
-    });
+            carouselContainer.appendChild(carouselItem);
+        });
 
-    // Initialize carousel controls
-    initImageCarousel();
-  }
+        // Initialize carousel controls
+        initImageCarousel();
+    }
 }
 
 // Listen for CleverTap native display events
 document.addEventListener("CT_web_native_display", function (event) {
-  console.log("CT_web_native_display event received:", event.detail);
+    console.log("CT_web_native_display event received:", event.detail);
 
-  // Debug: Show exactly what keys and values are in the payload
-  if (event.detail && event.detail.kv) {
-    console.log("Native display keys:", Object.keys(event.detail.kv));
-    console.log("Looking for topic:", event.detail.kv.topic);
-    // console.log("Looking for displayType:", event.detail.kv.displayType);
-  }
-
-  if (event.detail && event.detail.kv) {
-    // Check if this is for our carousel by looking for either displayType or topic
-    if (
-      event.detail.kv.displayType === "imageCarousel" ||
-      event.detail.kv.topic === "blueprint"
-    ) {
-      handleCarouselNativeDisplay(event.detail);
-    } else {
-      console.log("No match for imageCarousel in either displayType or topic");
+    // Debug: Show exactly what keys and values are in the payload
+    if (event.detail && event.detail.kv) {
+        console.log("Native display keys:", Object.keys(event.detail.kv));
+        console.log("Looking for topic:", event.detail.kv.topic);
+        // console.log("Looking for displayType:", event.detail.kv.displayType);
     }
-  }
+
+    if (event.detail && event.detail.kv) {
+        // Check if this is for our carousel by looking for either displayType or topic
+        if (
+            event.detail.kv.displayType === "imageCarousel" ||
+            event.detail.kv.topic === "blueprint"
+        ) {
+            handleCarouselNativeDisplay(event.detail);
+        } else {
+            console.log(
+                "No match for imageCarousel in either displayType or topic",
+            );
+        }
+    }
 });
 
 // Initialize the carousel on page load
 document.addEventListener("DOMContentLoaded", function () {
-  initImageCarousel();
+    initImageCarousel();
 });
 
 function onBottomBanner() {
-  document
-    .getElementById("bottombanner")
-    .addEventListener("click", function (event) {
-      console.log("Bottom Banner button clicked");
-      clevertap.event.push("Bottom Banner");
-    });
+    document
+        .getElementById("bottombanner")
+        .addEventListener("click", function (event) {
+            console.log("Bottom Banner button clicked");
+            clevertap.event.push("Bottom Banner");
+        });
+}
+
+function nativeDisplayOverride() {
+    document
+        .getElementById("nativeDisplayOverride")
+        .addEventListener("click", function (event) {
+            console.log("Native Display Override button clicked");
+            clevertap.event.push("TestCT1WProps");
+        });
 }
 
 function onTopBanner() {
-  document
-    .getElementById("topbanner")
-    .addEventListener("click", function (event) {
-      console.log("Top Banner button clicked");
-      clevertap.event.push("Top Banner");
-    });
+    document
+        .getElementById("topbanner")
+        .addEventListener("click", function (event) {
+            console.log("Top Banner button clicked");
+            clevertap.event.push("Top Banner");
+        });
 }
 
 function onProductExperiences() {
-  document
-    .getElementById("productexperiences")
-    .addEventListener("click", function (event) {
-      window.location.href = "./ProductExperiences/pePaymentPage.html";
-    });
+    document
+        .getElementById("productexperiences")
+        .addEventListener("click", function (event) {
+            window.location.href = "./ProductExperiences/pePaymentPage.html";
+        });
 }
