@@ -3,7 +3,7 @@
 
 if (ServiceWorker in navigator) {
     navigator.serviceWorker
-        .register("clevertap_sw.js")
+        .register("./clevertap_sw.js")
         .then(function (registration) {
             console.log("Service Worker Registered");
             console.log(registration);
@@ -14,29 +14,61 @@ if (ServiceWorker in navigator) {
         });
 }
 
-function onLogin() {
-    clevertap.getLocation();
-    document
-        .getElementById("login")
-        .addEventListener("click", function (event) {
-            clevertap.onUserLogin.push({
-                Site: {
-                    // Name: "Push Test",
-                    Identity: "1914",
-                    // Email: " ",
-                    // Phone: "+56765676567",
-                    // Gender: "M",
-                    // DOB: new Date(),
+function openLoginModal() {
+    const modal = document.getElementById("loginModal");
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+    document.getElementById("loginIdentity").focus();
+}
 
-                    // "MSG-email": false,
-                    // "MSG-push": true,
-                    // "MSG-sms": true,
-                    // "MSG-whatsapp": true,
-                },
-            });
-            console.log("User logged in");
-            // alert(clevertap.getClevertapID());
-        });
+function closeLoginModal() {
+    const modal = document.getElementById("loginModal");
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+}
+
+function addLoginProperty() {
+    const container = document.getElementById("loginExtraProps");
+    const row = document.createElement("div");
+    row.className = "flex gap-2 items-center";
+    row.innerHTML = `
+        <input type="text" placeholder="Key" class="flex h-9 w-1/2 rounded-md border border-input bg-background px-3 py-1 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" />
+        <input type="text" placeholder="Value" class="flex h-9 flex-1 rounded-md border border-input bg-background px-3 py-1 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2" />
+        <button onclick="this.parentElement.remove()" class="w-8 h-8 flex-shrink-0 flex items-center justify-center rounded-md hover:bg-destructive/10 transition-colors">
+            <svg class="w-4 h-4 text-destructive" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>`;
+    container.appendChild(row);
+    row.querySelector("input").focus();
+}
+
+function onLogin() {
+    const identity = document.getElementById("loginIdentity").value.trim();
+    if (!identity) {
+        document.getElementById("loginIdentity").focus();
+        return;
+    }
+
+    const profile = { Identity: identity };
+    const name = document.getElementById("loginName").value.trim();
+    const email = document.getElementById("loginEmail").value.trim();
+    const phone = document.getElementById("loginPhone").value.trim();
+    if (name) profile.Name = name;
+    if (email) profile.Email = email;
+    if (phone) profile.Phone = phone;
+
+    document.querySelectorAll("#loginExtraProps > div").forEach((row) => {
+        const [keyInput, valInput] = row.querySelectorAll("input");
+        const key = keyInput.value.trim();
+        const val = valInput.value.trim();
+        if (key && val) profile[key] = val;
+    });
+
+    clevertap.getLocation();
+    clevertap.onUserLogin.push({ Site: profile });
+    console.log("User logged in", profile);
+    closeLoginModal();
 }
 
 // function onProfilePush() {
@@ -72,7 +104,9 @@ function onSubscribe() {
                 "We promise to only send you relevant content and give you updates on your transactions",
             okButtonText: "Sign me up!",
             rejectButtonText: "No thanks",
-            okButtonColor: "#f28046",
+            okButtonColor: "#F28046",
+            askAgainTimeInSeconds: 5,
+            serviceWorkerPath: "./clevertap_sw.js", // path to your custom service worker file
         });
     });
 }
