@@ -419,3 +419,11 @@ function onProductExperiences() {
             window.location.href = "./ProductExperiences/pePaymentPage.html";
         });
 }
+
+function onMcaffeinePE() {
+    document
+        .getElementById("mcaffeinePE")
+        .addEventListener("click", function (event) {
+            window.location.href = "./ProductExperiences/Mcaffeine/index.html";
+        });
+}
