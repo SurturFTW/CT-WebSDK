@@ -26,7 +26,7 @@ const Ecomm_Variables = {
         spotlight_price: 399,
         spotlight_cta_text: "Add to Cart",
         spotlight_image:
-            "https://placehold.co/560x560/6B4226/FFFFFF?text=Coffee+Body+Wash",
+            "https://m.media-amazon.com/images/I/71cSOB5QlEL._AC_UF1000,1000_QL80_.jpg",
     },
     Ecomm_Personalization: {
         welcome_message: "Welcome to mCaffeine!",
