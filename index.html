@@ -69,6 +69,25 @@
         </style>
 
         <script type="text/javascript">
+            // Dashboards: Pushkar=TEST-865-ZRW-7K7Z, Pranjal=489-7K5-676Z,
+            // Shreyas (PE)=677-ZZ6-7K7Z, Abeezer=468-W87-546Z
+            var CT_ACCOUNT_ID_STORAGE_KEY = "ct_account_id";
+            var CT_DEFAULT_ACCOUNT_ID = "TEST-865-ZRW-7K7Z";
+
+            var ctAccountIdFromUrl = new URLSearchParams(
+                window.location.search,
+            ).get("ctid");
+            if (ctAccountIdFromUrl) {
+                localStorage.setItem(
+                    CT_ACCOUNT_ID_STORAGE_KEY,
+                    ctAccountIdFromUrl,
+                );
+            }
+            var ctAccountId =
+                ctAccountIdFromUrl ||
+                localStorage.getItem(CT_ACCOUNT_ID_STORAGE_KEY) ||
+                CT_DEFAULT_ACCOUNT_ID;
+
             var clevertap = {
                 event: [],
                 profile: [],
@@ -77,17 +96,7 @@
                 notifications: [],
                 privacy: [],
             };
-            // Pushkar's Dashboard
-            clevertap.account.push({ id: "TEST-865-ZRW-7K7Z" });
-
-            // Pranjal's Dashboard
-            // clevertap.account.push({ id: "489-7K5-676Z" });
-
-            // Shreyas's Dashboard (For PE)
-            // clevertap.account.push({ id: "677-ZZ6-7K7Z" });
-
-            // Abeezer Dashboard
-            // clevertap.account.push({ id: "468-W87-546Z" });
+            clevertap.account.push({ id: ctAccountId });
 
             clevertap.privacy.push({ optOut: false });
             clevertap.privacy.push({ useIP: true });
