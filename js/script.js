@@ -27,8 +27,8 @@ function closeLoginModal() {
     modal.classList.remove("flex");
 }
 
-function addLoginProperty() {
-    const container = document.getElementById("loginExtraProps");
+function addPropertyRow(containerId) {
+    const container = document.getElementById(containerId);
     const row = document.createElement("div");
     row.className = "flex gap-2 items-center";
     row.innerHTML = `
@@ -41,6 +41,21 @@ function addLoginProperty() {
         </button>`;
     container.appendChild(row);
     row.querySelector("input").focus();
+}
+
+function collectPropertiesFromContainer(containerId) {
+    const props = {};
+    document.querySelectorAll(`#${containerId} > div`).forEach((row) => {
+        const [keyInput, valInput] = row.querySelectorAll("input");
+        const key = keyInput.value.trim();
+        const val = valInput.value.trim();
+        if (key && val) props[key] = val;
+    });
+    return props;
+}
+
+function addLoginProperty() {
+    addPropertyRow("loginExtraProps");
 }
 
 function onLogin() {
@@ -58,17 +73,46 @@ function onLogin() {
     if (email) profile.Email = email;
     if (phone) profile.Phone = phone;
 
-    document.querySelectorAll("#loginExtraProps > div").forEach((row) => {
-        const [keyInput, valInput] = row.querySelectorAll("input");
-        const key = keyInput.value.trim();
-        const val = valInput.value.trim();
-        if (key && val) profile[key] = val;
-    });
+    Object.assign(profile, collectPropertiesFromContainer("loginExtraProps"));
 
     clevertap.getLocation();
     clevertap.onUserLogin.push({ Site: profile });
     console.log("User logged in", profile);
     closeLoginModal();
+}
+
+function openEventModal() {
+    const modal = document.getElementById("eventModal");
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+    document.getElementById("eventName").focus();
+}
+
+function closeEventModal() {
+    const modal = document.getElementById("eventModal");
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+}
+
+function addEventProperty() {
+    addPropertyRow("eventExtraProps");
+}
+
+function onPushEvent() {
+    const eventName = document.getElementById("eventName").value.trim();
+    if (!eventName) {
+        document.getElementById("eventName").focus();
+        return;
+    }
+
+    const eventProps = collectPropertiesFromContainer("eventExtraProps");
+    if (Object.keys(eventProps).length) {
+        clevertap.event.push(eventName, eventProps);
+    } else {
+        clevertap.event.push(eventName);
+    }
+    console.log("Event pushed", eventName, eventProps);
+    closeEventModal();
 }
 
 // function onProfilePush() {
