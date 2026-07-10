@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="icon" type="image/x-icon" href="../../ct-favicon.png" />
+
+        <title>mCaffeine | Product Experiences Demo</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+            rel="stylesheet"
+        />
+
+        <script type="text/javascript">
+            var REGION = "eu1";
+            var TOKEN = "611-aa6";
+
+            var clevertap = {
+                event: [],
+                profile: [],
+                account: [],
+                onUserLogin: [],
+                notifications: [],
+                privacy: [],
+                region: REGION,
+                token: TOKEN,
+            };
+            // Shreyas's Dashboard (For PE)
+            clevertap.account.push({ id: "677-ZZ6-7K7Z" });
+            clevertap.privacy.push({ optOut: false });
+            clevertap.privacy.push({ useIP: false });
+
+            (function () {
+                var wzrk = document.createElement("script");
+                wzrk.type = "text/javascript";
+                wzrk.async = true;
+                wzrk.src =
+                    ("https:" == document.location.protocol
+                        ? "https://d2r1yp2w7bby2u.cloudfront.net"
+                        : "http://static.clevertap.com") +
+                    "/js/clevertap.min.js";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(wzrk, s);
+            })();
+        </script>
+
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            sans: ["Poppins", "sans-serif"],
+                        },
+                        colors: {
+                            coffee: {
+                                50: "#F5E6D3",
+                                100: "#E8CBA6",
+                                600: "#6B4226",
+                                700: "#4A2C17",
+                                800: "#3B2417",
+                            },
+                        },
+                    },
+                },
+            };
+        </script>
+
+        <style>
+            .pe-input {
+                display: flex;
+                height: 2.25rem;
+                width: 100%;
+                border-radius: 0.375rem;
+                border: 1px solid #d6d3d1;
+                background: #fff;
+                padding: 0.25rem 0.75rem;
+                font-size: 0.875rem;
+            }
+            .pe-input:focus {
+                outline: none;
+                box-shadow: 0 0 0 2px #6b4226;
+            }
+        </style>
+    </head>
+    <body class="bg-stone-50 text-stone-900 font-sans antialiased">
+        <!-- Nav -->
+        <nav class="bg-coffee-800 text-white sticky top-0 z-40 shadow-md">
+            <div
+                class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between"
+            >
+                <div class="flex items-center space-x-3">
+                    <span class="text-2xl font-extrabold tracking-tight">
+                        m<span class="text-coffee-50">Caffeine</span>
+                    </span>
+                    <span
+                        class="hidden sm:inline text-xs text-coffee-100 border-l border-coffee-100/30 pl-3"
+                        >Product Experiences Demo</span
+                    >
+                </div>
+                <div class="flex items-center space-x-3">
+                    <span
+                        id="currentUserBanner"
+                        class="hidden sm:inline text-xs bg-coffee-700 rounded-full px-3 py-1.5"
+                        >Viewing as: Guest</span
+                    >
+                    <button
+                        onclick="openSwitchUserModal()"
+                        class="inline-flex items-center gap-1.5 text-sm font-semibold bg-coffee-50 text-coffee-800 rounded-md px-4 py-2 hover:bg-white transition-colors"
+                    >
+                        Switch User
+                    </button>
+                    <a
+                        href="../../index.html"
+                        class="hidden md:inline text-xs text-coffee-100 hover:text-white"
+                        >← Back to Home</a
+                    >
+                </div>
+            </div>
+        </nav>
+
+        <!-- Personalized welcome strip -->
+        <div class="bg-coffee-50 border-b border-coffee-100">
+            <div class="max-w-7xl mx-auto px-4 py-2 text-sm text-coffee-800 font-medium">
+                <span id="welcomeMessage">Welcome to mCaffeine!</span>
+                <span class="text-coffee-600"
+                    >— this line is a Product Experiences variable
+                    (<code>Personalization.welcome_message</code>) and can be
+                    targeted per user segment.</span
+                >
+            </div>
+        </div>
+
+        <!-- Hero -->
+        <section class="relative">
+            <img
+                id="heroBannerImage"
+                alt="Hero banner"
+                class="w-full h-[420px] object-cover"
+            />
+            <div
+                class="absolute inset-0 bg-gradient-to-r from-coffee-800/85 via-coffee-800/50 to-transparent flex items-center"
+            >
+                <div class="max-w-7xl mx-auto px-4 w-full">
+                    <div class="max-w-xl text-white">
+                        <h1
+                            id="heroHeadline"
+                            class="text-4xl md:text-5xl font-extrabold leading-tight mb-4"
+                        >
+                            Wake Up Your Skin. Caffeine-Charged Care.
+                        </h1>
+                        <p id="heroSubheadline" class="text-lg text-coffee-50 mb-6">
+                            India's #1 Caffeine Skincare & Bodycare Brand
+                        </p>
+                        <button
+                            onclick="trackEvent('Hero CTA Clicked'); document.getElementById('spotlightSection').scrollIntoView({behavior:'smooth'})"
+                            class="inline-flex items-center rounded-md bg-coffee-50 text-coffee-800 font-semibold px-6 py-3 hover:bg-white transition-colors"
+                        >
+                            <span id="heroCtaText">Shop Bestsellers</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Offer bar -->
+        <section class="bg-coffee-700 text-white">
+            <div
+                class="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row items-center justify-center gap-3 text-center"
+            >
+                <span
+                    id="offerBadgeText"
+                    class="bg-white text-coffee-700 text-xs font-bold px-3 py-1 rounded-full uppercase"
+                    >Flat 20% Off</span
+                >
+                <span id="offerHeadline" class="font-semibold"
+                    >Get Your Glow On</span
+                >
+                <span class="text-sm text-coffee-50">
+                    Use code
+                    <span
+                        id="discountCode"
+                        class="font-bold underline underline-offset-2"
+                        >GLOW20</span
+                    >
+                    for <span id="discountPercentage">20</span>% off
+                </span>
+            </div>
+        </section>
+
+        <!-- PE A/B Test Spotlight -->
+        <section id="spotlightSection" class="max-w-7xl mx-auto px-4 py-14">
+            <div class="text-center mb-8">
+                <span
+                    class="inline-flex items-center gap-1.5 bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full uppercase"
+                >
+                    🧪 PE A/B Test Zone
+                </span>
+                <p class="text-sm text-stone-500 mt-2 max-w-lg mx-auto">
+                    The card below renders the <code>Spotlight</code> variable
+                    group. Configure an A/B test on this group in the
+                    CleverTap dashboard — switching the logged-in user will
+                    show whichever variant CleverTap assigned to that
+                    profile.
+                </p>
+            </div>
+
+            <div
+                class="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl border-2 border-amber-200 overflow-hidden grid grid-cols-1 md:grid-cols-2"
+            >
+                <img
+                    id="spotlightImage"
+                    alt="Spotlight product"
+                    class="w-full h-72 md:h-full object-cover"
+                />
+                <div class="p-8 flex flex-col justify-center">
+                    <h3
+                        id="spotlightProductName"
+                        class="text-2xl font-bold text-coffee-800 mb-2"
+                    >
+                        Coffee Body Wash
+                    </h3>
+                    <p id="spotlightTagline" class="text-stone-600 mb-4">
+                        Deep Cleanse. Zero Dryness.
+                    </p>
+                    <div class="text-3xl font-extrabold text-coffee-700 mb-6">
+                        ₹<span id="spotlightPrice">399</span>
+                    </div>
+                    <button
+                        onclick="trackEvent('Added to Cart', {'Product Name': document.getElementById('spotlightProductName').textContent, Price: document.getElementById('spotlightPrice').textContent})"
+                        class="w-full bg-coffee-700 text-white font-semibold py-3 rounded-lg hover:bg-coffee-800 transition-colors"
+                    >
+                        <span id="spotlightCtaText">Add to Cart</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Static product grid -->
+        <section class="bg-white border-t border-stone-200">
+            <div class="max-w-7xl mx-auto px-4 py-14">
+                <h2 class="text-2xl font-bold text-coffee-800 mb-8 text-center">
+                    Bestsellers
+                </h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <!-- Product cards (static — not PE-driven) -->
+                    <div class="group cursor-pointer" onclick="trackEvent('Product Viewed', {'Product Name': 'Coffee Body Scrub', Category: 'Bodycare', Price: 449})">
+                        <img src="https://www.mcaffeine.com/cdn/shop/files/Card-1_option1_1.jpg?v=1772196396&width=533" alt="Coffee Body Scrub" class="w-full aspect-square object-cover rounded-lg group-hover:opacity-90 transition-opacity" />
+                        <p class="mt-2 text-sm font-medium text-stone-800">Coffee Body Scrub - 100g</p>
+                        <p class="text-sm text-coffee-700 font-semibold">₹449</p>
+                    </div>
+                    <div class="group cursor-pointer" onclick="trackEvent('Product Viewed', {'Product Name': 'Berries Brightening Coffee Face Scrub', Category: 'Skincare', Price: 249})">
+                        <img src="https://www.mcaffeine.com/cdn/shop/files/Card-1.1.jpg?v=1731398073&width=533" alt="Berries Brightening Coffee Face Scrub" class="w-full aspect-square object-cover rounded-lg group-hover:opacity-90 transition-opacity" />
+                        <p class="mt-2 text-sm font-medium text-stone-800">Berries Face Scrub - 75g</p>
+                        <p class="text-sm text-coffee-700 font-semibold">₹249</p>
+                    </div>
+                    <div class="group cursor-pointer" onclick="trackEvent('Product Viewed', {'Product Name': 'Blueberry Blast Body Wash', Category: 'Bodycare', Price: 399})">
+                        <img src="https://www.mcaffeine.com/cdn/shop/files/blueberry_body_wash_2.jpg?v=1765793268&width=533" alt="Blueberry Blast Body Wash" class="w-full aspect-square object-cover rounded-lg group-hover:opacity-90 transition-opacity" />
+                        <p class="mt-2 text-sm font-medium text-stone-800">Blueberry Blast Body Wash - 300ml</p>
+                        <p class="text-sm text-coffee-700 font-semibold">₹399</p>
+                    </div>
+                    <div class="group cursor-pointer" onclick="trackEvent('Product Viewed', {'Product Name': 'Sweet Escape Perfume Body Lotion', Category: 'Bodycare', Price: 499})">
+                        <img src="https://www.mcaffeine.com/cdn/shop/files/card_1b.jpg?v=1772196474&width=533" alt="Sweet Escape Perfume Body Lotion" class="w-full aspect-square object-cover rounded-lg group-hover:opacity-90 transition-opacity" />
+                        <p class="mt-2 text-sm font-medium text-stone-800">Sweet Escape Body Lotion - 300ml</p>
+                        <p class="text-sm text-coffee-700 font-semibold">₹499</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Debug panel -->
+        <section class="max-w-7xl mx-auto px-4 py-10">
+            <details class="bg-stone-900 text-stone-100 rounded-lg p-4">
+                <summary class="cursor-pointer text-sm font-semibold">
+                    Debug: Raw PE variable values (last fetched
+                    <span id="debugFetchedAt">—</span>)
+                </summary>
+                <pre
+                    id="debugOutput"
+                    class="mt-3 text-xs overflow-x-auto whitespace-pre-wrap"
+                >Loading...</pre>
+                <button
+                    onclick="refreshVariables()"
+                    class="mt-3 text-xs bg-stone-700 hover:bg-stone-600 px-3 py-1.5 rounded-md"
+                >
+                    Refetch variables
+                </button>
+            </details>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-coffee-800 text-coffee-100 py-6">
+            <div class="max-w-7xl mx-auto px-4 text-center text-sm">
+                mCaffeine × Hyphen — CleverTap Product Experiences Demo
+            </div>
+        </footer>
+
+        <!-- Switch User Modal -->
+        <div
+            id="switchUserModal"
+            class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 backdrop-blur-sm"
+        >
+            <div
+                class="relative bg-white rounded-xl border shadow-2xl w-full max-w-md mx-4 max-h-[90vh] flex flex-col"
+            >
+                <!-- Header -->
+                <div class="flex items-center justify-between p-6 border-b">
+                    <div>
+                        <h3 class="font-semibold text-coffee-800">Switch User</h3>
+                        <p class="text-xs text-stone-500">
+                            Identify as a different profile to see personalized
+                            PE content / A-B variants
+                        </p>
+                    </div>
+                    <button
+                        onclick="closeSwitchUserModal()"
+                        class="w-8 h-8 rounded-md flex items-center justify-center hover:bg-stone-100 transition-colors"
+                    >
+                        <svg
+                            class="w-4 h-4 text-stone-500"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"
+                            ></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Body -->
+                <div class="overflow-y-auto p-6 space-y-4 flex-1">
+                    <!-- Presets -->
+                    <div>
+                        <span class="block text-xs font-medium text-stone-500 mb-2"
+                            >Quick presets</span
+                        >
+                        <div class="grid grid-cols-3 gap-2">
+                            <button
+                                onclick="fillPreset('new_visitor')"
+                                class="text-xs font-medium border border-stone-300 rounded-md py-2 hover:bg-coffee-50"
+                            >
+                                New Visitor
+                            </button>
+                            <button
+                                onclick="fillPreset('returning_customer')"
+                                class="text-xs font-medium border border-stone-300 rounded-md py-2 hover:bg-coffee-50"
+                            >
+                                Returning
+                            </button>
+                            <button
+                                onclick="fillPreset('vip_shopper')"
+                                class="text-xs font-medium border border-stone-300 rounded-md py-2 hover:bg-coffee-50"
+                            >
+                                VIP Shopper
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Standard fields -->
+                    <div class="space-y-3 border-t pt-4">
+                        <div>
+                            <label class="block text-xs font-medium text-stone-500 mb-1"
+                                >Identity <span class="text-red-500">*</span></label
+                            >
+                            <input
+                                type="text"
+                                id="switchIdentity"
+                                placeholder="e.g. user_123"
+                                class="pe-input"
+                            />
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-stone-500 mb-1"
+                                >Name</label
+                            >
+                            <input
+                                type="text"
+                                id="switchName"
+                                placeholder="e.g. Riya Sharma"
+                                class="pe-input"
+                            />
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-stone-500 mb-1"
+                                >Email</label
+                            >
+                            <input
+                                type="email"
+                                id="switchEmail"
+                                placeholder="e.g. riya@example.com"
+                                class="pe-input"
+                            />
+                        </div>
+                    </div>
+
+                    <!-- Extra properties -->
+                    <div class="border-t pt-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-medium text-stone-500"
+                                >Additional properties</span
+                            >
+                            <button
+                                onclick="addSwitchUserProperty()"
+                                class="inline-flex items-center gap-1 text-xs font-medium text-coffee-700 hover:underline"
+                            >
+                                + Add Property
+                            </button>
+                        </div>
+                        <div id="switchUserExtraProps" class="space-y-2"></div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="flex gap-3 p-6 border-t">
+                    <button
+                        onclick="resetToGuest()"
+                        class="text-sm font-medium text-red-600 hover:underline"
+                    >
+                        Reset to Guest
+                    </button>
+                    <div class="flex-1"></div>
+                    <button
+                        onclick="closeSwitchUserModal()"
+                        class="inline-flex items-center justify-center rounded-md text-sm font-medium border border-stone-300 bg-white hover:bg-stone-50 h-10 px-4"
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        onclick="switchUser()"
+                        class="inline-flex items-center justify-center rounded-md text-sm font-medium bg-coffee-700 text-white hover:bg-coffee-800 h-10 px-4"
+                    >
+                        Switch User
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script src="./pe-demo.js" type="text/javascript"></script>
+    </body>
+</html>
