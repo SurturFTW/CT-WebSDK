@@ -70,8 +70,8 @@
 
         <script type="text/javascript">
             var CT_ACCOUNT_ID_STORAGE_KEY = "ct_account_id";
-            // var CT_DEFAULT_ACCOUNT_ID = "TEST-865-ZRW-7K7Z";
-            var Visual_Editor_CT_ID = "468-W87-546Z";
+            var CT_DEFAULT_ACCOUNT_ID = "TEST-865-ZRW-7K7Z";
+            // var Visual_Editor = "TEST-468-W87-546Z";
 
             var ctAccountIdFromUrl = new URLSearchParams(
                 window.location.search,
@@ -85,7 +85,7 @@
             var ctAccountId =
                 ctAccountIdFromUrl ||
                 localStorage.getItem(CT_ACCOUNT_ID_STORAGE_KEY) ||
-                Visual_Editor_CT_ID;
+                CT_DEFAULT_ACCOUNT_ID;
 
             var clevertap = {
                 event: [],
