@@ -141,6 +141,7 @@ function viewProduct() {
             Category: "Mens Accessories",
             Price: 59.99,
             Date: new Date(),
+            createdAt: "$D_1785486540",
         });
     });
 }
@@ -472,6 +473,15 @@ function onTestPopup() {
         .addEventListener("click", function (event) {
             console.log("Test Popup button clicked");
             clevertap.event.push("React Web Test");
+        });
+}
+
+function onLoginViaPopup() {
+    document
+        .getElementById("loginviapopup")
+        .addEventListener("click", function (event) {
+            console.log("Login via Popup button clicked");
+            clevertap.event.push("User Login", {});
         });
 }
 
