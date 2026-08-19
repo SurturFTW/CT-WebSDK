@@ -198,6 +198,17 @@ function onCustomPopup() {
     });
 }
 
+function onDeepLinkPopup() {
+    document
+        .getElementById("deeplinkpopup")
+        .addEventListener("click", function (event) {
+            console.log("Deep link button clicked");
+            clevertap.event.push("Order Placed", {
+                Type: "Deep LinkTest",
+            });
+        });
+}
+
 function onMultiValueEvent() {
     document
         .getElementById("multi-value-event")
