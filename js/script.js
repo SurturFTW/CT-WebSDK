@@ -691,3 +691,13 @@ function onMcaffeinePE() {
             window.location.href = "./ProductExperiences/Mcaffeine/index.html";
         });
 }
+
+function openDialer() {
+    // close popup
+    const banner = document.getElementById("wizParDiv2");
+    if (banner) {
+        banner.remove();
+    }
+    // open phone
+    window.location.href = "tel:918355958447";
+}
